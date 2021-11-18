@@ -1,0 +1,56 @@
+---
+title: "P8105 Final Project Project Proposal"
+author: "Armaan Ahmed, add your names "
+date: "11/18/2021"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Define your teams and propose a project. This proposal should be a half-page to a page in length and include:
+
+
+The group members (names and UNIs)
+Armaan Ahmed - asa2249
+Hansheng Zhang - hz2711
+Yueli Ma - ym2814’
+Brandon Rojas br2598
+
+
+The tentative project title
+
+
+The motivation for this project
+
+
+The intended final products
+
+
+The anticipated data sources
+https://data.cdc.gov/NCHS/Indicators-of-Anxiety-or-Depression-Based-on-Repor/8pt5-q6wp
+
+
+The planned analyses / visualizations / coding challenges
+
+
+The planned timeline
+
+There should be one proposal per group, written collaboratively using .Rmd (rendering to a GH document) in a dedicated GitHub repo. This is intended to describe a project that is in the planning stages. Only one team member should submit this proposal via Canvas. 
+Please submit your GitHub repo containing your team's proposal here.
+
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
