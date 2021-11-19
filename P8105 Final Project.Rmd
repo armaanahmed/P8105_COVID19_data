@@ -1,6 +1,6 @@
 ---
 title: "P8105 Final Project Project Proposal"
-author: "Armaan Ahmed, add your names "
+author: "Armaan Ahmed, Hansheng Zhang, add your names "
 date: "11/18/2021"
 output: github_document
 ---
@@ -15,42 +15,31 @@ Define your teams and propose a project. This proposal should be a half-page to 
 The group members (names and UNIs)
 Armaan Ahmed - asa2249
 Hansheng Zhang - hz2711
-Yueli Ma - ym2814’
+Yueli Ma - ym2814
 Brandon Rojas br2598
 
-
-The tentative project title
-
-
-The motivation for this project
+Title:
+Covid-19 and the increasing toll on mental health
 
 
-The intended final products
+The motivation for this project:
+The Covid-19 pandemic presented many new challenges to public health. Significant changes to socialization, employment, and physical health have certainly led to increased stress and anxiety. Therefore, we wanted to investigate the effects of covid-19 on anxiety and depressive symptoms and present it in a visual format. 
 
+The intended final products:
+We would like to use r markdown to create a webpage that would include a dashboard with figures showing trends in anxiety and depression during the pandemic. Furthermore, the webpage would include information on our data set and the types of analyses we did. 
 
 The anticipated data sources
+Data comes from the National Center for Health Statistics(NCHS) partnered with the census bureau on a survey called the Household Pulse Survey. This online survey was designed to assess the impact of the covid-19 pandemic in the US. It provides information on percentage of adults that report symptoms of anxiety and depression. Data was collected between April, 2020 to July 2021. 
+
 https://data.cdc.gov/NCHS/Indicators-of-Anxiety-or-Depression-Based-on-Repor/8pt5-q6wp
 
 
 The planned analyses / visualizations / coding challenges
-
+We plan on identifying key predictors of anxiety/depressive symptoms using regression analysis. We can therefore stratify by these predictors and present the stratified data using figures and tables. Some of these predictors include demographic data (race, sex, etc) and location(state). We think the regression analysis coding will present a challenge but we will work collaboratively on the coding and ask the TAs for help if needed. 
 
 The planned timeline
+We plan on meeting throughout the next few weeks to work on coding and writing the report. By December 11th, we will have the webpage and screencast completed. 
+
 
 There should be one proposal per group, written collaboratively using .Rmd (rendering to a GH document) in a dedicated GitHub repo. This is intended to describe a project that is in the planning stages. Only one team member should submit this proposal via Canvas. 
 Please submit your GitHub repo containing your team's proposal here.
-
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
