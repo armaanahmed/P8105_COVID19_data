@@ -1,0 +1,22 @@
+name: "Yay internet!"
+output_dir: "."
+navbar:
+  title: "Home"
+  right:
+    - text: "About Us"
+      href: about.html
+    - text: "Analysis 1"
+      href: plotly.html
+    - text: "Analysis 2"
+      href: analysis_2.html
+    - text: "Analysis 3"
+      href: analysis_3.html
+    - text: "Analysis 4"
+      href: dashboard.html      
+    - icon: fa-envelope fa-lg
+      href: mailto:<br2598@cumc.columbia.edu>
+    - icon: fa-github fa-lg
+      href: http://github.com/brojasnyc/
+output:
+  html_document:
+    theme: cerulean

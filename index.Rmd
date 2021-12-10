@@ -1,0 +1,89 @@
+---
+title: "Brandon C. Rojas"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: spacelab
+---
+
+```{r, include = FALSE}
+library(tidyverse)
+```
+
+By: Add name and I'll link your github page.
+
+## Motivation
+
+“It would be a tragedy if we beat back one public health crisis only to allow another to grow in its place.”
+
+
+The COVID-19 pandemic has left an unprecedented impact on mental health, with especially staggering effects on the youth, elderly, and vulnerable populations, the magnitude of which was captured by multiple institutions in the United States including the U.S. Census Bureau. It has reached a point that this week, U.S. Surgeon General Vivek Murthy published a 53-page advisory reviewing circumstances behind a decade long increase and outlining direct actions the institutions including state and federal government can take to combat it. 
+
+There are many possible contributing factors specifically connected to the pandemic, including a worsening opioid crisis, income volatility, and COVID-19 itself, along with lifestyle changes that came with the national effort against the disease. 
+
+Early in the pandemic, lockdowns were enacted to encourage Americans to stay home. Complications of the lockdown included mass unemployment, widespread shutdown of small businesses, including an <a href="https://www.nytimes.com/2020/08/03/nyregion/nyc-small-businesses-closing-coronavirus.html">estimated one third of small businesses in NYC</a>, a <a href="https://www.bloomberg.com/news/articles/2020-06-08/black-business-owners-suffer-41-drop-in-covid-19-lockdowns">decline of 41% of black business owners</a> (If paywalled, <a href="https://drive.google.com/file/d/1so5hfe7FaEf6Newl-XENT8gfIQWiQKb9/view?usp=sharing">read here</a>), and increased incidence of mental health issues <a
+href="https://icap.columbia.edu/tools_resources/silver-survey-summary-sheet/">in the elderly</a>. 
+
+
+In addition, there is shortage of mental health professionals equipped to handle the increased incidence of cases. 
+
+
+Innovations, whether from government or industry are needed and we will examine why.
+
+
+## Related Work
+
+
+https://www.hhs.gov/sites/default/files/surgeon-general-youth-mental-health-advisory.pdf 
+
+## Initial questions
+
+
+•	What age groups have had the highest increase in anxiety or depression? (Which groups were most affected?) Repeat for race/etc
+
+•	So on...
+    
+
+## Data
+
+
+Data comes from the National Center for Health Statistics (NCHS) partnered with the census bureau on a survey called the Household Pulse Survey. This online survey was designed to assess the impact of the COVID-19 pandemic in the US. It provides information on percentage of adults that report symptoms of anxiety and depression. Data was collected between April, 2020 to July 2021. 
+
+We can compare these with baseline data from 2019 to estimate a % change. 
+
+https://data.cdc.gov/NCHS/Indicators-of-Anxiety-or-Depression-Based-on-Repor/8pt5-q6wp
+
+Here's a quick look at our data:
+
+```{r}
+
+mh_df = read.csv("Indicators_of_Anxiety_or_Depression_Based_on_Reported_Frequency_of_Symptoms_During_Last_7_Days.csv") %>% janitor::clean_names()
+
+head(mh_df)
+
+```
+
+
+
+## Discussion:
+ 
+
+## What we can do:
+
+
+Everyone reading this can make a difference, if you’re at Mailman you have, or will have, the skills to leave an impact on the future of mental health. 
+
+In the wake of an <a href="https://usafacts.org/articles/over-one-third-of-americans-live-in-areas-lacking-mental-health-professionals/">intractable shortage of mental health professionals</a>, universal or accessibly priced, mobile, around the clock access to mental health treatment will be paramount for society to tackle the sharp increase in mental health disorders in the past two years.
+
+There are immense career opportunities in the field of mental health, including telemedicine, behavioral healthcare, online therapy, and accessibility innovations using brain computer interfaces.
+
+Since 2020, <a href="https://www.forbes.com/sites/katiejennings/2021/06/07/venture-funding-for-mental-health-startups-hits-record-high-as-anxiety-depression-skyrocket/?sh=4c4ea68a1116">record numbers of mental health startups have received venture capital funding</a>. 
+
+A few examples:
+
+• Online mental health/wellness service <a href="https://www.fiercehealthcare.com/tech/softbank-leads-mental-health-startup-cerebral-s-300m-round-propelling-valuation-to-4-8b.%20Published%20December%208,%202021.">Cerebral receiving $300M</a> from in a series C round led by SoftBank to expand services on its 200,000 patients
+
+• <a href="https://www.fiercebiotech.com/medtech/digital-therapist-woebot-perks-up-90m-for-ai-powered-mental-health-platform.%20Published%20July%2021,%202021.%20Accessed%20December%2010,%202021.">Woebot closes $90M</a>: A free “AI/NLP powered chatbot” app that uses your personal input and generates individualized treatment using cognitive behavioral therapy inspired techniques.</p>
+
+• <a href="https://www.whatif.vc/portfolio">And more</a>

@@ -1,0 +1,67 @@
+---
+title: "Analysis 1"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    source_code: embed
+---
+
+```{r}
+library(flexdashboard)
+library(tidyverse)
+library(plotly)
+library(p8105.datasets)
+library(lubridate)
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+
+```{r}
+
+
+```
+
+### Chart A
+
+```{r}
+
+
+```
+
+### Chart B
+
+
+```{r}
+
+```
+
+### Chart C
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+
+
+
+```{r}
+
+```
+
+
+```{r}
+
+
+```
+
+
+
+
+
