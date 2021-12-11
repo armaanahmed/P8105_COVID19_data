@@ -69,7 +69,7 @@ We compare the results with 2019 values from the National Health Interview Surve
 
 In April 2020, one month after COVID-19 was declared a national emergency, the National Center for Health Statistics (NCHS) teameddd up with the Census Bureau to create the Household Pulse Survey, a 20 minute survey intended to record the impact of the pandemic on mental health.
 
-For cleaning, the data required all dates be converted to Lubridate "Date" types from the original "Character". Confidence intervals were split into upper and lower bounds.
+For cleaning, the data required all dates be converted to Lubridate "Date" types from the original "Character".
 
 We will examine the first two subsets of data focusing on incidence of anxiety and depression, and mental healthcare during the start of the pandemic.
 
@@ -89,10 +89,7 @@ The "Value" column represents the percentage of members of the subgroup column t
 
 The value score is derived from a modified combination of two screening tests, the two-item <a href = "https://www.hiv.uw.edu/page/mental-health-screening/phq-2/"> </a> Patient Health Questionnaire (PHQ-2) and the two-item <a href = "https://www.hiv.uw.edu/page/mental-health-screening/gad-2 /"> Generalized Anxiety Disorder (GAD-2)</a>  scale. 
 
-
-
 ```{r}
-
 anxiety_depression_df = read.csv("Indicators_of_Anxiety_or_Depression_Based_on_Reported_Frequency_of_Symptoms_During_Last_7_Days.csv") %>% 
   janitor::clean_names() %>% 
    na.omit
@@ -100,7 +97,6 @@ anxiety_depression_df = read.csv("Indicators_of_Anxiety_or_Depression_Based_on_R
 head_ad = anxiety_depression_df %>% select(i_indicator, state, subgroup, time_period_label,value) %>% knitr::kable() 
 
 head(head_ad)
-
 ```
 ## Mental Health Care - NCHS - Household Pulse Survey
 

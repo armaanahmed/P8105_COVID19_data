@@ -33,15 +33,15 @@ scale_fill_discrete = scale_fill_viridis_d
 mh_care_df = read.csv("Mental_Health_Care_in_the_Last_4_Weeks.csv") %>%  
   janitor::clean_names() 
 ```
-Here we illustrate the following:
 
-The proportion of Americans who were not able to get access to mental health care when they needed it, and th
+Let's use plotly to illustrate the following:
 
+The proportion of Americans who were not able to get access to mental health care when they needed it, by age (4x4 facet by age)
+The proportion of Americans who used pharmaceuticals for their mental health, by age (4x4 facet by age)
 
-```{r}
+4x4 with CIs or one chart with no CI (adding CI might get messy)
 
-```
-
+Maybe overlay a second set of axes (x2=x1, y2 = COVID count of deaths by end of week) to compare COVID deaths to the mental health status by age?
 
 
 ```{r}
@@ -50,8 +50,9 @@ mh_care_df = read.csv("Mental_Health_Care_in_the_Last_4_Weeks.csv") %>%
   mutate(
     time_period_start_date = as_date(time_period_start_date, format = '%m/%d/%Y'), 
     time_period_end_date = as_date(time_period_end_date, format = '%m/%d/%Y')
-    
-   ) 
+   )
+
+
 
 mh_age = c("18 - 29 years", "30 - 39 years", "40 - 49 years", "50 - 59 years", "60 - 69 years", "70 - 79 years", "80 years and above")
 
