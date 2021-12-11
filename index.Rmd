@@ -9,6 +9,20 @@ output:
 
 ```{r, include = FALSE}
 library(tidyverse)
+library(modelr)
+library(p8105.datasets)
+knitr::opts_chunk$set(
+  fig.width = 6,
+  fig.asp = .6,
+  out.width = "90%"
+)
+theme_set(theme_minimal() + theme(legend.position = "bottom"))
+options(
+  ggplot2.continuous.colour = "viridis",
+  ggplot2.continuous.fill = "viridis"
+)
+scale_colour_discrete = scale_colour_viridis_d
+scale_fill_discrete = scale_fill_viridis_d
 ```
 
 By: Add name and I'll link your github page.
@@ -37,6 +51,8 @@ Innovations, whether from government or industry are needed and we will examine 
 
 https://www.hhs.gov/sites/default/files/surgeon-general-youth-mental-health-advisory.pdf 
 
+We compare the results with 2019 values from the National Health Interview Survey (NHIS) <a href="https://www.cdc.gov/nchs/data/nhis/mental-health-monthly-508.pdf/"> "Estimates of Mental Health Symptomatology" </a>
+
 ## Initial questions
 
 
@@ -47,23 +63,60 @@ https://www.hhs.gov/sites/default/files/surgeon-general-youth-mental-health-advi
 
 ## Data
 
+In April 2020, one month after COVID-19 was declared a national emergency, the National Center for Health Statistics (NCHS) teameddd up with the Census Bureau to create the HOusehold Pulse Survey, a 20 minute survey intended to record the impact of the pandemic on mental health. 
 
-Data comes from the National Center for Health Statistics (NCHS) partnered with the census bureau on a survey called the Household Pulse Survey. This online survey was designed to assess the impact of the COVID-19 pandemic in the US. It provides information on percentage of adults that report symptoms of anxiety and depression. Data was collected between April, 2020 to July 2021. 
+We will examine the first two subsets of data focusing on incidence of anxiety and depression, and mental healthcare during the start of the pandemic.
 
-We can compare these with baseline data from 2019 to estimate a % change. 
+
+Anxiety and Depression - NCHS
+
+
+Where possible, we compare the results with 2019 values from the National Health Interview Survey (NHIS) as a baseline. <a href="https://www.cdc.gov/nchs/data/nhis/mental-health-monthly-508.pdf/"> "Estimates of Mental Health Symptomatology" </a>
 
 https://data.cdc.gov/NCHS/Indicators-of-Anxiety-or-Depression-Based-on-Repor/8pt5-q6wp
 
-Here's a quick look at our data:
+
+
+## Anxiety and Depression - NCHS - Household Pulse Survey
+
+The "Value" column represents the percentage of members of the subgroup column that experienced either symptoms of a depressive or anxious disorder, or both.
+
+The value score is derived from a modified combination of two screening tests, the two-item <a href = "https://www.hiv.uw.edu/page/mental-health-screening/phq-2/"> </a> Patient Health Questionnaire (PHQ-2) and the two-item <a href = "https://www.hiv.uw.edu/page/mental-health-screening/gad-2 /"> Generalized Anxiety Disorder (GAD-2)</a>  scale. 
+
+
 
 ```{r}
 
-mh_df = read.csv("Indicators_of_Anxiety_or_Depression_Based_on_Reported_Frequency_of_Symptoms_During_Last_7_Days.csv") %>% janitor::clean_names()
+anxiety_depression_df = read.csv("Indicators_of_Anxiety_or_Depression_Based_on_Reported_Frequency_of_Symptoms_During_Last_7_Days.csv") %>% 
+  janitor::clean_names() %>% 
+   na.omit
 
-head(mh_df)
+head_ad = anxiety_depression_df %>% select(i_indicator, state, subgroup, time_period_label,value) %>% knitr::kable() 
+
+head(head_ad)
 
 ```
+## Mental Health Care - NCHS - Household Pulse Survey
 
+Four months into the survey, questions were added about the impact of the pandemic on mental healthcare. Estimates are derived from the same survey and the "value" column represents the percentage of members of the subgroup column who done one of the following:
+
+a) took prescription medication for their mental health
+
+b) received counseling or therapy from a mental health professional 
+
+c) needed counseling or therapy from a mental health professional but did not get it (unmet mental health need)
+
+
+```{r}
+mh_care_df = read.csv("Mental_Health_Care_in_the_Last_4_Weeks.csv") %>%  
+  janitor::clean_names() %>% 
+  select(i_indicator, group, state, subgroup, time_period_label,value)
+
+head_mh = mh_care_df %>% select(i_indicator, state, subgroup, time_period_label,value) %>% knitr::kable() 
+
+head(head_mh)
+
+```
 
 
 ## Discussion:
