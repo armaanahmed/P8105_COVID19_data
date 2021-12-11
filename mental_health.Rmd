@@ -1,0 +1,66 @@
+---
+title: "Mental Health"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: spacelab
+---
+
+```{r, include = FALSE}
+library(tidyverse)
+library(modelr)
+library(plotly)
+library(lubridate)
+library(dplyr)
+knitr::opts_chunk$set(
+  fig.width = 6,
+  fig.asp = .6,
+  out.width = "90%"
+)
+theme_set(theme_minimal() + theme(legend.position = "bottom"))
+options(
+  ggplot2.continuous.colour = "viridis",
+  ggplot2.continuous.fill = "viridis"
+)
+scale_colour_discrete = scale_colour_viridis_d
+scale_fill_discrete = scale_fill_viridis_d
+```
+
+## Mental Healthcare and the Pandemic
+
+```{r}
+mh_care_df = read.csv("Mental_Health_Care_in_the_Last_4_Weeks.csv") %>%  
+  janitor::clean_names() 
+```
+Here we illustrate the following:
+
+The proportion of Americans who were not able to get access to mental health care when they needed it, and th
+
+
+```{r}
+
+```
+
+
+
+```{r}
+mh_care_df = read.csv("Mental_Health_Care_in_the_Last_4_Weeks.csv") %>%  
+  janitor::clean_names() %>% 
+  mutate(
+    time_period_start_date = as_date(time_period_start_date, format = '%m/%d/%Y'), 
+    time_period_end_date = as_date(time_period_end_date, format = '%m/%d/%Y')
+    
+   ) 
+
+mh_age = c("18 - 29 years", "30 - 39 years", "40 - 49 years", "50 - 59 years", "60 - 69 years", "70 - 79 years", "80 years and above")
+
+mh_care_df %>%
+  filter(subgroup %in% "18 - 29 years") %>% 
+  filter(i_indicator %in% "Took Prescription Medication for Mental Health, Last 4 Weeks") %>%
+  ggplot(aes(x = time_period_start_date, y = value)) + 
+  geom_line() + geom_ribbon(aes(ymin=mh_care_df$low_ci, ymax=mh_care_df$high_ci), linetype=2, alpha=0.1)
+
+#ggplotly(p)
+```
+
