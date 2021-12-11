@@ -2,6 +2,27 @@
 title: "Anaylsis"
 ---
 
-### About this site
+### Regression analysis
 
-Regression Anaylsis
+```{r setup}
+library(tidyverse)
+library(modelr)
+library(p8105.datasets)
+knitr::opts_chunk$set(
+  fig.width = 6,
+  fig.asp = .6,
+  out.width = "90%"
+)
+theme_set(theme_minimal() + theme(legend.position = "bottom"))
+options(
+  ggplot2.continuous.colour = "viridis",
+  ggplot2.continuous.fill = "viridis"
+)
+scale_colour_discrete = scale_colour_viridis_d
+scale_fill_discrete = scale_fill_viridis_d
+```
+
+```{r model}
+model_1 = lm(bwt ~ gaweeks + momage + babysex + mrace + parity, data = birthweight_df)
+model_1 %>% broom::tidy()
+```
