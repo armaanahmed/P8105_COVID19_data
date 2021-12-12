@@ -82,13 +82,9 @@ We will examine the first two subsets of the survey, which focus on incidence of
 
 
 ## Anxiety and Depression - NCHS - Household Pulse Survey
-<a href = "https://data.cdc.gov/NCHS/Indicators-of-Anxiety-or-Depression-Based-on-Repor/8pt5-q6wp">
+<a href = "https://data.cdc.gov/NCHS/Indicators-of-Anxiety-or-Depression-Based-on-Repor/8pt5-q6wp"><h6>Available here</h6></a>
 
-
-The “Value” column represents the percentage of members of the subgroup column that, at the time of measurement, screened positive for symptoms of a depressive or anxious disorder, or both.
-
-
-The value score is derived from a modified combination of two screening tests, the two-item <a href = "https://www.hiv.uw.edu/page/mental-health-screening/phq-2/"> </a> Patient Health Questionnaire (PHQ-2) and the two-item <a href = "https://www.hiv.uw.edu/page/mental-health-screening/gad-2 /"> Generalized Anxiety Disorder (GAD-2)</a>  scale. 
+The value score is derived from a modified combination of two screening tests, the two-item <a href = "https://www.hiv.uw.edu/page/mental-health-screening/phq-2/"> </a> Patient Health Questionnaire (PHQ-2) and the two-item <a href = "https://www.hiv.uw.edu/page/mental-health-screening/gad-2 /"> Generalized Anxiety Disorder (GAD-2)</a>  scale. It represents the percentage of members of the subgroup column that, at the time of measurement, screened positive for symptoms of a depressive or anxious disorder, or both.
 
 ```{r}
 anxiety_depression_df = read_csv("Indicators_of_Anxiety_or_Depression_Based_on_Reported_Frequency_of_Symptoms_During_Last_7_Days.csv") %>% 

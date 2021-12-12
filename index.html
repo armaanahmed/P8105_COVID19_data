@@ -394,9 +394,10 @@ div.tocify {
 </div>
 <div id="initial-questions" class="section level2">
 <h2>Initial questions</h2>
-<p>Initially we were curious whether there was any the pandemic and circumstances around it could have had impact on the incidence of anxiety, depression, or other emotional disorders. After finding the Pulse Survey, we also wondered how mental health changed</p>
-<p>• What age groups have had the highest increase in anxiety or depression? (Which groups were most affected?) Repeat for race/etc</p>
-<p>• So on…</p>
+<p>Initially we were curious whether there was any the pandemic and circumstances around it could have had impact on the incidence of anxiety, depression, or other emotional disorders. After finding the Pulse Survey, asked:</p>
+<p>What variables are most important for mental health? Age? Race, location or gender?</p>
+<p>How has mental health changed from the pre-pandemic baseline?</p>
+<p>How has the need for mental healthcare changed during the pandemic?</p>
 </div>
 <div id="data" class="section level2">
 <h2>Data</h2>
@@ -407,9 +408,12 @@ div.tocify {
 </div>
 <div id="anxiety-and-depression---nchs---household-pulse-survey" class="section level2">
 <h2>Anxiety and Depression - NCHS - Household Pulse Survey</h2>
-<p><a href = "https://data.cdc.gov/NCHS/Indicators-of-Anxiety-or-Depression-Based-on-Repor/8pt5-q6wp"></p>
-<p>The “Value” column represents the percentage of members of the subgroup column that, at the time of measurement, screened positive for symptoms of a depressive or anxious disorder, or both.</p>
-<p>The value score is derived from a modified combination of two screening tests, the two-item <a href = "https://www.hiv.uw.edu/page/mental-health-screening/phq-2/"> </a> Patient Health Questionnaire (PHQ-2) and the two-item <a href = "https://www.hiv.uw.edu/page/mental-health-screening/gad-2 /"> Generalized Anxiety Disorder (GAD-2)</a> scale.</p>
+<a href = "https://data.cdc.gov/NCHS/Indicators-of-Anxiety-or-Depression-Based-on-Repor/8pt5-q6wp">
+<h6>
+Available here
+</h6>
+<p></a></p>
+<p>The value score is derived from a modified combination of two screening tests, the two-item <a href = "https://www.hiv.uw.edu/page/mental-health-screening/phq-2/"> </a> Patient Health Questionnaire (PHQ-2) and the two-item <a href = "https://www.hiv.uw.edu/page/mental-health-screening/gad-2 /"> Generalized Anxiety Disorder (GAD-2)</a> scale. It represents the percentage of members of the subgroup column that, at the time of measurement, screened positive for symptoms of a depressive or anxious disorder, or both.</p>
 <pre class="r"><code>anxiety_depression_df = read_csv(&quot;Indicators_of_Anxiety_or_Depression_Based_on_Reported_Frequency_of_Symptoms_During_Last_7_Days.csv&quot;) %&gt;% 
   janitor::clean_names() %&gt;% 
    na.omit</code></pre>
@@ -481,7 +485,6 @@ head(head_mh)</code></pre>
 </div>
 <div id="discussion" class="section level2">
 <h2>Discussion:</h2>
-<p> </p>
 </div>
 <div id="what-we-can-do" class="section level2">
 <h2>What we can do:</h2>
