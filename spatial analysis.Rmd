@@ -1,0 +1,59 @@
+---
+title: "spatial analysis"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(modelr)
+library(dplyr)
+library(lubridate)
+##install.packages("readxl")
+library(readxl)
+##install.packages("data.table")
+###library(datatable)
+library(ggplot2)
+library(ggthemes)
+library(dplyr)
+##library(plotly)
+library(maps)
+##library(mapproj)
+library(tidyverse)
+##install.packages('tmap')
+library(tmap)
+##install.packages("ggmap")
+library(ggmap)
+library(hablar)
+
+```
+
+```{r data}
+anxiety_df = read.csv("Indicators_of_Anxiety_or_Depression_Based_on_Reported_Frequency_of_Symptoms_During_Last_7_Days.csv") %>%  
+  janitor::clean_names() %>% 
+  select(indicator, group, subgroup, value) %>% 
+  filter(indicator == "Symptoms of Anxiety Disorder or Depressive Disorder") %>% 
+  filter(group == "By State") %>% 
+  group_by(subgroup) %>%
+  mutate(row = row_number()) %>% 
+  pivot_wider(
+    names_from = group,
+    values_from = value
+  ) %>% 
+  rename(value = 'By State') %>% 
+  select(-row, -indicator)
+
+
+anxiety_df_sum = aggregate(anxiety_df$value, by=list(state=anxiety_df$subgroup), FUN=mean)
+
+us_states <- map_data("state")
+
+anxiety_df_sum$state = tolower(anxiety_df_sum$state)
+
+us_states %>% 
+  left_join(anxiety_df_sum, by=c("region"="state")) %>%
+  ggplot(aes(x=long,y=lat,group=group, fill=x)) +
+  geom_polygon(color = "gray90", size = 0.1) +
+  scale_fill_continuous(type = "viridis") + ggtitle("Symptoms of Anxiety Disorder or Depressive Disorder by State") + theme_map() + theme(legend.title = element_blank())
+
+```

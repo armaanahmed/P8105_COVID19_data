@@ -1,12 +1,11 @@
 ---
-title: "Mental Health"
+title: "Access to Mental Health"
 output: 
   html_document:
     toc: true
     toc_float: true
     theme: spacelab
     code_folding: hide
-
 ---
 
 ```{r, include = FALSE}
@@ -43,7 +42,8 @@ The proportion of Americans who used pharmaceuticals for their mental health, by
 
 Maybe overlay a second set of axes (x2=x1, y2 = COVID count of deaths by end of week) to compare COVID deaths to the mental health status by age?
 
-COVID mortality from Oct 2020 to Oct 2021
+We include a crude graph of COVID mortality from Oct 2020 to Oct 2021 to add context
+
 ```{r}
 cm_df = read_csv("Provisional_COVID-19_Death_Counts_by_Week_Ending_Date_and_State.csv") %>% 
   janitor::clean_names() %>%
@@ -86,15 +86,17 @@ mh_care_df = read_csv("Mental_Health_Care_in_the_Last_4_Weeks.csv") %>%
 
 mh_age = c("18 - 29 years", "30 - 39 years", "40 - 49 years", "50 - 59 years", "60 - 69 years", "70 - 79 years", "80 years and above")
 
-mh_age_df = mh_care_df %>% filter(subgroup %in% mh_age) %>% 
+mh_age_df = mh_care_df %>% 
+  filter(subgroup %in% mh_age) %>% 
   #filter(indicator %in% "Took Prescription Medication for Mental Health And/Or Received Counseling or Therapy, Last 4 Weeks")
   #filter(indicator %in% "Took Prescription Medication for Mental Health, Last 4 Weeks")
   filter(indicator %in% "Needed Counseling or Therapy But Did Not Get It, Last 4 Weeks")
   #filter(indicator %in% "Received Counseling or Therapy, Last 4 Weeks")
 
-mh_state = c("By Race/Hispanic ethnicity", "United States", "By Disability status", "By Gender identity", "By Age", "By Sex", "By Education", "National Estimate", "By Presence of Symptoms of Anxiety/Depression")
+mh_state = c("By Race/Hispanic ethnicity", "United States", "By Disability status", "By Gender identity", "By Age", "By Sex", "By Education", "National Estimate", "By Presence of Symptoms of Anxiety/Depression", "By Sexual orientation")
 
-mh_state_df = mh_care_df %>% filter(group %notin% mh_state) %>% 
+mh_state_df = mh_care_df %>% 
+  filter(group %notin% mh_state) %>% 
   #filter(indicator %in% "Took Prescription Medication for Mental Health And/Or Received Counseling or Therapy, Last 4 Weeks")
   #filter(indicator %in% "Took Prescription Medication for Mental Health, Last 4 Weeks")
   filter(indicator %in% "Needed Counseling or Therapy But Did Not Get It, Last 4 Weeks")
@@ -134,9 +136,6 @@ anxdep_state_df = anxdep_df %>% filter(group %notin% anxdep_state) %>%
 
 ## Plotting Age vs ...
 ```{r}
-
-
-
 #Date vs subgroup w/ facet w/ CI
 mh_age_df %>%
   ggplot(aes(x = time_period_start_date, y = value, color = subgroup)) + 
@@ -190,13 +189,14 @@ $H_0$ : There is no difference in accessibility of mental healthcare by states
 $H_1$ : At least two states have unequal access for healthcare
 
 ```{r}
-mh_care_df %>% 
+state_means = mh_state_df %>% 
   select(subgroup, value)%>%
   group_by(subgroup) %>% 
+  na.omit() %>%
   summarize(mean = mean(value),
             se = sd(value)
-            ) %>% 
-  knitr::kable(caption = "Average % incidence of anxiety/depression by State during time period")
+            )
+  knitr::kable(head(state_means,caption = "Average % incidence of anxiety/depression by State during time period"))
 
 ```
 

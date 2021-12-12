@@ -5,13 +5,9 @@ navbar:
   right:
     - text: "About Us"
       href: about.html
-    - text: "Analysis 1"
-      href: plotly.html
-    - text: "Analysis 2"
+    - text: "Data Exploration"
       href: analysis_2.html
-    - text: "Analysis 3"
-      href: analysis_3.html
-    - text: "Analysis 4"
+    - text: "Dashboard"
       href: dashboard.html
     - text: "Mental Healthcare and the Pandemic"
       href: mental_health.html      
