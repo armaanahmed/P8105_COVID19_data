@@ -7,6 +7,8 @@ navbar:
       href: about.html
     - text: "Data Exploration"
       href: analysis_2.html
+    - text: "Spatial Analysis"
+      href: spatial-analysis.html      
     - text: "Dashboard"
       href: dashboard.html
     - text: "Mental Healthcare and the Pandemic"
