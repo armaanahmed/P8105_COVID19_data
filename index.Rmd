@@ -60,11 +60,13 @@ Where possible, we compare the results with 2019 values from the National Health
 
 ## Initial questions
 
-Initially we were curious whether there was any the pandemic and circumstances around it could have had impact on the incidence of anxiety, depression, or other emotional disorders. After finding the Pulse Survey, we also wondered how mental health changed
+Initially we were curious whether there was any the pandemic and circumstances around it could have had impact on the incidence of anxiety, depression, or other emotional disorders. After finding the Pulse Survey, asked:
 
-•	What age groups have had the highest increase in anxiety or depression? (Which groups were most affected?) Repeat for race/etc
+What variables are most important for mental health? Age? Race, location or gender? 
 
-•	So on...
+How has mental health changed from the pre-pandemic baseline? 
+
+How has the need for mental healthcare changed during the pandemic?
     
 
 ## Data
@@ -130,7 +132,7 @@ Mental health data from 2019 provides a baseline to compare changes in anxiety a
 ![2019 Baseline](2019 baseline.png)
 
 ## Discussion:
- 
+
 
 ## What we can do:
 
