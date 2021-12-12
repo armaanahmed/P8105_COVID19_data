@@ -70,9 +70,10 @@ mh_age_df = mh_care_df %>% filter(subgroup %in% mh_age) %>%
   #filter(indicator %in% "Took Prescription Medication for Mental Health And/Or Received Counseling or Therapy, Last 4 Weeks")
   filter(indicator %in% "Took Prescription Medication for Mental Health, Last 4 Weeks")
 mh_age_df%>%
-  plot_ly(
-    x = ~time_period_start_date, y = ~value, type = "scatter", mode = "markers",color = ~subgroup
-  )
+  group_by(subgroup) %>%
+  do(p=plot_ly(., x = ~time_period_end_date, y = ~value, color = ~subgroup, type = "scatter", mode = "markers")) %>%
+  subplot(nrows = 1, shareX = TRUE, shareY = TRUE)
+  
 
 ```
 
