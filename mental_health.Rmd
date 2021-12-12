@@ -37,7 +37,7 @@ Using plotly we illustrate the increase of mental health burden in the US by age
 
 We include a crude graph of COVID mortality from Oct 2020 to Oct 2021 to add context
 
-```{r}
+```{r echo = FALSE}
 cm_df = read_csv("Provisional_COVID-19_Death_Counts_by_Week_Ending_Date_and_State.csv") %>% 
   janitor::clean_names() %>%
   mutate(
@@ -57,7 +57,10 @@ cm_anxdep_df = read_csv("Provisional_COVID-19_Death_Counts_by_Week_Ending_Date_a
    filter(end_date >=("2020-05-05") & end_date <= ("2021-10-11")) %>%
   filter(state == "United States") %>%
   filter(group == "By Week")
+```
 
+
+```{r echo = FALSE}
 z = cm_df %>% 
   ggplot(aes(x = end_date, y = covid_19_deaths)) + 
   geom_line()
@@ -65,7 +68,7 @@ ggplotly(z)
 ```
 
 Cleaning Mental Healthcare data, filtering separately by age and state
-```{r}
+```{r echo = FALSE}
 mh_care_df = read_csv("Mental_Health_Care_in_the_Last_4_Weeks.csv") %>%  
   janitor::clean_names() %>% 
   mutate(
@@ -221,13 +224,13 @@ state_means = mh_state_df %>%
 ```
 
 Based on the below we conclude with beyond 99.99% confidence that there is unequal access between states and the accessibility of mental healthcare. 
-```{r}
+```{r echo = FALSE}
 anova_state_mh_access = aov(value ~factor(subgroup), data = mh_state_df)
 summary(anova_state_mh_access) 
 ```
 
 We do a similar test to see if there are differences between age group and access to care, and reach a similar conclusion:
-```{r}
+```{r echo = FALSE}
 anova_age_mh_access = aov(value ~factor(subgroup), data = mh_age_df)
 summary(anova_age_mh_access) 
 ```
@@ -235,7 +238,7 @@ summary(anova_age_mh_access)
 
 And again, same results for for positive screening for anxiety or depression by state:
 
-```{r}
+```{r echo = FALSE}
 anova_state_ax = aov(value ~factor(subgroup), data = anxdep_state_df)
 summary(anova_state_ax) 
 ```

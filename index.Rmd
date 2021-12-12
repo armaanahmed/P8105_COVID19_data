@@ -60,11 +60,13 @@ Where possible, we compare the results with 2019 values from the National Health
 
 ## Initial questions
 
-Initially we were curious whether there was any the pandemic and circumstances around it could have had impact on the incidence of anxiety, depression, or other emotional disorders. After finding the Pulse Survey, we also wondered how mental health changed
+Initially we were curious whether there was any the pandemic and circumstances around it could have had impact on the incidence of anxiety, depression, or other emotional disorders. After finding the Pulse Survey, asked:
 
-•	What age groups have had the highest increase in anxiety or depression? (Which groups were most affected?) Repeat for race/etc
+What variables are most important for mental health? Age? Race, location or gender? 
 
-•	So on...
+How has mental health changed from the pre-pandemic baseline? 
+
+How has the need for mental healthcare changed during the pandemic?
     
 
 ## Data
@@ -130,7 +132,12 @@ Mental health data from 2019 provides a baseline to compare changes in anxiety a
 ![2019 Baseline](2019 baseline.png)
 
 ## Discussion:
-From out exploratory analysis, we noticed that age was negatively correlated with frequency of anxiety or depression symptoms. The 18-29 year old age group had the highest frequency of mental health symptoms. Furthermore, women were more likely to experience anxiety and depression symptoms compared to men. Education level was also correlated with mental health symptoms, with bachelor's degree or higher having the lowest frequency of symptoms. From the spatial data overlaid onto the map of the United States, we noticed that generally, the southern states and west coast had higher frequency of mental health symptoms. Furthermore, looking at temporal data, we can see that spikes in covid-19 related deaths corresponded with proportion of those unable to find mental health care treatment, use of therapy or psychiatric drugs, and positive screening for anxiety. s
+<<<<<<< HEAD
+From out exploratory analysis, we noticed that age was negatively correlated with frequency of anxiety or depression symptoms. The 18-29 year old age group had the highest frequency of mental health symptoms. Furthermore, women were more likely to experience anxiety and depression symptoms compared to men. Education level was also correlated with mental health symptoms, with bachelor's degree or higher having the lowest frequency of symptoms. From the spatial data overlaid onto the map of the United States, we noticed that generally, the southern states and west coast had higher frequency of mental health symptoms. Furthermore, looking at temporal data, we can see that spikes in covid-19 related deaths corresponded with proportion of those unable to find mental health care treatment, use of therapy or psychiatric drugs, and positive screening for anxiety. 
+=======
+
+
+>>>>>>> cf7b05af764877cee1ea90a44e06094083fa3b14
 ## What we can do:
 
 

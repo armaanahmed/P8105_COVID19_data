@@ -1,5 +1,5 @@
 ---
-title: "Analysis 1"
+title: "dashboard"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
@@ -51,7 +51,7 @@ cm_df%>%
   )
 ```
 
-### Chart B
+### time end period VS. Mental health value across all age groups
 
 
 ```{r}
@@ -76,31 +76,6 @@ mh_age_df%>%
   
 
 ```
-
-### Chart C
-
-```{r}
-
-```
-
-```{r}
-
-```
-
-
-
-
-```{r}
-
-```
-
-
-```{r}
-
-
-```
-
-
 
 
 
