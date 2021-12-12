@@ -5,6 +5,8 @@ output:
     orientation: columns
     vertical_layout: fill
     source_code: embed
+    code_folding: hide
+
 ---
 
 ```{r}
@@ -13,6 +15,13 @@ library(tidyverse)
 library(plotly)
 library(p8105.datasets)
 library(lubridate)
+theme_set(theme_minimal() + theme(legend.position = "bottom"))
+options(
+  ggplot2.continuous.colour = "viridis",
+  ggplot2.continuous.fill = "viridis"
+)
+scale_colour_discrete = scale_colour_viridis_d
+scale_fill_discrete = scale_fill_viridis_d
 ```
 
 Column {data-width=350}
@@ -24,17 +33,46 @@ Column {data-width=350}
 
 ```
 
-### Chart A
+### Chart covid mortality rate from Oct2020 to Oct2021
 
 ```{r}
-
-
+cm_df = read_csv("Provisional_COVID-19_Death_Counts_by_Week_Ending_Date_and_State.csv") %>% 
+  janitor::clean_names() %>%
+  mutate(
+    start_date = as_date(start_date, format = '%m/%d/%Y'), 
+    end_date = as_date(end_date, format = '%m/%d/%Y'),
+   ) %>%
+   filter(end_date >=("2020-08-31") & end_date <= ("2021-10-11")) %>%
+  filter(state == "United States") %>%
+  filter(group == "By Week")
+cm_df%>%
+  plot_ly(
+    x= ~end_date, y = ~covid_19_deaths, type = "scatter", mode = "markers", colors = "viridis"
+  )
 ```
 
 ### Chart B
 
 
 ```{r}
+mh_care_df = read_csv("Mental_Health_Care_in_the_Last_4_Weeks.csv") %>%  
+  janitor::clean_names() %>% 
+  mutate(
+    time_period_start_date = as_date(time_period_start_date, format = '%m/%d/%Y'), 
+    time_period_end_date = as_date(time_period_end_date, format = '%m/%d/%Y'),
+    state = as_factor(state),
+    subgroup = as_factor(subgroup),
+    group = as_factor(group),
+    indicator = as_factor(indicator)    
+   )
+mh_age = c("18 - 29 years", "30 - 39 years", "40 - 49 years", "50 - 59 years", "60 - 69 years", "70 - 79 years", "80 years and above")
+mh_age_df = mh_care_df %>% filter(subgroup %in% mh_age) %>% 
+  #filter(indicator %in% "Took Prescription Medication for Mental Health And/Or Received Counseling or Therapy, Last 4 Weeks")
+  filter(indicator %in% "Took Prescription Medication for Mental Health, Last 4 Weeks")
+mh_age_df%>%
+  plot_ly(
+    x = ~time_period_start_date, y = ~value, type = "scatter", mode = "markers",color = ~subgroup
+  )
 
 ```
 

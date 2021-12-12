@@ -5,6 +5,8 @@ output:
     toc: true
     toc_float: true
     theme: spacelab
+    code_folding: hide
+
 ---
 
 ```{r, include = FALSE}
@@ -121,7 +123,7 @@ anxdep_age_df = anxdep_df %>% filter(subgroup %in% mh_age) %>%
   filter(indicator %in% "Symptoms of Anxiety Disorder or Depressive Disorder")
   #filter(indicator %in% "Symptoms of Depressive Disorder")
   
-anxdep_state = c("By Race/Hispanic ethnicity", "United States", "By Disability status", "By Gender identity", "By Age", "By Sex", "By Education", "National Estimate", "By Presence of Symptoms of Anxiety/Depression")
+anxdep_state = c("By Race/Hispanic ethnicity", "United States", "By Disability status", "By Gender identity", "By Age", "By Sex", "By Education", "National Estimate", "By Presence of Symptoms of Anxiety/Depression", "By Sexual orientation")
 
 anxdep_state_df = anxdep_df %>% filter(group %notin% anxdep_state) %>% 
   #filter(indicator %in% "Symptoms of Anxiety Disorder")
@@ -129,8 +131,11 @@ anxdep_state_df = anxdep_df %>% filter(group %notin% anxdep_state) %>%
   #filter(indicator %in% "Symptoms of Depressive Disorder")
 ```
 
+
 ## Plotting Age vs ...
 ```{r}
+
+
 
 #Date vs subgroup w/ facet w/ CI
 mh_age_df %>%
@@ -169,13 +174,41 @@ ggplot() +
   facet_wrap(vars(subgroup)) +
   scale_y_continuous(breaks = seq(0, 80, 10), sec.axis = sec_axis(trans = ~.*001)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
-  labs(x = "Month", y = "% Subgroup affected \n COVID mortality in tens of thousands", title = "% Screened for Anxiety or Depression by age")
+  labs(x = "Month", y = "% Subgroup affected \n COVID mortality in tens of thousands", title = "% Positive screening for Anxiety or Depression by age")
 
 ```
 
 
-## Top 5 most and least effected states 
-```{r}
+## Hypothesis Test
 
+We will explore whether there may be differences in the proportion of individuals unable to find mental healthcare.
+
+We use one-way ANOVA because we are comparing within a single categorical variable with more than two levels.
+
+$H_0$ : There is no difference in accessibility of mental healthcare by states
+
+$H_1$ : At least two states have unequal access for healthcare
+
+```{r}
+mh_care_df %>% 
+  select(subgroup, value)%>%
+  group_by(subgroup) %>% 
+  summarize(mean = mean(value),
+            se = sd(value)
+            ) %>% 
+  knitr::kable(caption = "Average % incidence of anxiety/depression by State during time period")
+
+```
+
+Based on the below we conclude with beyond 99.99% confidence that there is unequal access between states and the accessibility of mental healthcare. 
+```{r}
+anova_state_mh_access = aov(value ~factor(subgroup), data = mh_state_df)
+summary(anova_state_mh_access) 
+```
+
+We do a similar test to see if there are differences between age group and access to care, and reach a similar conclusion:
+```{r}
+anova_age_mh_access = aov(value ~factor(subgroup), data = mh_age_df)
+summary(anova_age_mh_access) 
 ```
 
