@@ -5,6 +5,8 @@ output:
     toc: true
     toc_float: true
     theme: spacelab
+    code_folding: hide
+
 ---
 
 ```{r, include = FALSE}
@@ -23,6 +25,7 @@ options(
 )
 scale_colour_discrete = scale_colour_viridis_d
 scale_fill_discrete = scale_fill_viridis_d
+
 ```
 
 By: <a href = "https://armaanahmed.github.io/">Armaan Ahmed </a> , <a href = "https://brojasnyc.github.io/br2598.github.io/">Brandon Rojas </a> , <a href = "https://albinomeese.github.io/hz2711.github.io/ ">Hansheng Zheng </a> , Yueli Ma 
@@ -119,7 +122,9 @@ head(head_mh)
 
 
 ## Discussion:
- 
+We found that compared to last year, positive screening for anxiety is up X%, depression up Y%, and that screening for these seemed to peak around the same times as peak COVID mortality. 
+
+And among states and age groups, there were significant differences in access to mental healthcare
 
 ## What we can do:
 

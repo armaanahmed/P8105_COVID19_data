@@ -5,6 +5,8 @@ output:
     toc: true
     toc_float: true
     theme: spacelab
+    code_folding: hide
+
 ---
 
 ```{r, include = FALSE}
