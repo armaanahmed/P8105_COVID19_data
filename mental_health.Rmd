@@ -42,7 +42,8 @@ The proportion of Americans who used pharmaceuticals for their mental health, by
 
 Maybe overlay a second set of axes (x2=x1, y2 = COVID count of deaths by end of week) to compare COVID deaths to the mental health status by age?
 
-COVID mortality from Oct 2020 to Oct 2021
+We include a crude graph of COVID mortality from Oct 2020 to Oct 2021 to add context
+
 ```{r}
 cm_df = read_csv("Provisional_COVID-19_Death_Counts_by_Week_Ending_Date_and_State.csv") %>% 
   janitor::clean_names() %>%
@@ -85,7 +86,8 @@ mh_care_df = read_csv("Mental_Health_Care_in_the_Last_4_Weeks.csv") %>%
 
 mh_age = c("18 - 29 years", "30 - 39 years", "40 - 49 years", "50 - 59 years", "60 - 69 years", "70 - 79 years", "80 years and above")
 
-mh_age_df = mh_care_df %>% filter(subgroup %in% mh_age) %>% 
+mh_age_df = mh_care_df %>% 
+  filter(subgroup %in% mh_age) %>% 
   #filter(indicator %in% "Took Prescription Medication for Mental Health And/Or Received Counseling or Therapy, Last 4 Weeks")
   #filter(indicator %in% "Took Prescription Medication for Mental Health, Last 4 Weeks")
   filter(indicator %in% "Needed Counseling or Therapy But Did Not Get It, Last 4 Weeks")
@@ -93,12 +95,19 @@ mh_age_df = mh_care_df %>% filter(subgroup %in% mh_age) %>%
 
 mh_state = c("By Race/Hispanic ethnicity", "United States", "By Disability status", "By Gender identity", "By Age", "By Sex", "By Education", "National Estimate", "By Presence of Symptoms of Anxiety/Depression", "By Sexual orientation")
 
-mh_state_df = mh_care_df %>% filter(group %notin% mh_state) %>% 
+mh_state_df = mh_care_df %>% 
+  filter(group %notin% mh_state) %>% 
   #filter(indicator %in% "Took Prescription Medication for Mental Health And/Or Received Counseling or Therapy, Last 4 Weeks")
   #filter(indicator %in% "Took Prescription Medication for Mental Health, Last 4 Weeks")
   filter(indicator %in% "Needed Counseling or Therapy But Did Not Get It, Last 4 Weeks")
   #filter(indicator %in% "Received Counseling or Therapy, Last 4 Weeks")
 
+mh_drug_care_age_df = mh_care_df %>% 
+  filter(subgroup %in% mh_age) %>% 
+  filter(indicator %in% "Took Prescription Medication for Mental Health And/Or Received Counseling or Therapy, Last 4 Weeks")
+  #filter(indicator %in% "Took Prescription Medication for Mental Health, Last 4 Weeks")
+  #filter(indicator %in% "Needed Counseling or Therapy But Did Not Get It, Last 4 Weeks")
+  #filter(indicator %in% "Received Counseling or Therapy, Last 4 Weeks")
 
 ```
 
@@ -131,49 +140,67 @@ anxdep_state_df = anxdep_df %>% filter(group %notin% anxdep_state) %>%
 ```
 
 
-## Plotting Age vs ...
 ```{r}
-
-
-
 #Date vs subgroup w/ facet w/ CI
-mh_age_df %>%
-  ggplot(aes(x = time_period_start_date, y = value, color = subgroup)) + 
-  geom_line() + 
-  geom_ribbon(aes(ymin=low_ci, ymax=high_ci), linetype=2, alpha=0.1)  + 
-  facet_wrap(vars(mh_age_df$subgroup)) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  labs(x = "Month", y = "% Subgroup affected")
+# mh_age_df %>%
+#   ggplot(aes(x = time_period_start_date, y = value, color = subgroup)) + 
+#   geom_line() + 
+#   geom_ribbon(aes(ymin=low_ci, ymax=high_ci), linetype=2, alpha=0.1)  + 
+#   facet_wrap(vars(mh_age_df$subgroup)) +
+#   theme(axis.text.x = element_text(angle = 45, hjust = 1), axis.text.y = element_text(angle = 45, hjust = 1)) +
+#   scale_y_continuous(breaks = seq(0, 40, 5)) +
+#   labs(x = "Month", y = "% Subgroup affected")
+# 
+# #Date vs subgroup, no facets w/ CI
+# mh_age_df %>%
+#   ggplot(aes(x = time_period_start_date, y = value, color = subgroup)) + 
+#   geom_line() + 
+#   geom_ribbon(aes(ymin=low_ci, ymax=high_ci), linetype=2, alpha=0.1)  + 
+# #  facet_wrap(vars(mh_age_df$subgroup)) +
+#   theme(axis.text.x = element_text(angle = 45, hjust = 1), axis.text.y = element_text(angle = 45, hjust = 1)) +
+#   labs(x = "Month", y = "% Subgroup affected", title = "Healthcare inaccessibility throughout the pandemic by age group ")
+```
 
-#Date vs subgroup, no facets w/ CI
-mh_age_df %>%
-  ggplot(aes(x = time_period_start_date, y = value, color = subgroup)) + 
-  geom_line() + 
-  geom_ribbon(aes(ymin=low_ci, ymax=high_ci), linetype=2, alpha=0.1)  + 
-#  facet_wrap(vars(mh_age_df$subgroup)) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
-  labs(x = "Month", y = "% Subgroup affected", title = "Healthcare inaccessibility throughout the pandemic by age group ")
+## Mental Health Burden by Age Group
 
+We notice that there are distinct patterns of 
+
+The following is presented alongside COVID mortalities scaled by tens of thousands to give context on the state of the pandemic at time of recording. 
+
+```{r}
 # mental health availability w/ facet w/o CI w/COVID mort
-ggplot() + 
+g = ggplot() + 
   geom_line(data = mh_age_df, aes(x = time_period_start_date, y = value, color = subgroup) ) +
   geom_line(data = cm_df, aes(x = end_date, y = covid_19_deaths * 0.001) ) + 
   #geom_ribbon(aes(data = mh_age_df, ymin=low_ci, ymax=high_ci), linetype=2, alpha=0.1)  +
   facet_wrap(vars(subgroup)) +
-  scale_y_continuous(breaks = seq(0, 40, 5), sec.axis = sec_axis(trans = ~.*001)) +
+  scale_y_continuous(sec.axis = sec_axis(trans = ~.*001)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
-  labs(x = "Month", y = "% without access to mental health treatment \n COVID mortality in tens of thousands",title = "Healthcare inaccessibility throughout the pandemic by age group ")
-#ggplotly(g)
+  labs(x = "Month", y = "% without access to mental health treatment",title = "Use of  ")
+ggplotly(g)
+
+y = ggplot() + 
+  geom_line(data = mh_drug_care_age_df, aes(x = time_period_start_date, y = value, color = subgroup) ) +
+  geom_line(data = cm_df, aes(x = end_date, y = covid_19_deaths * 0.001) ) + 
+  #geom_ribbon(aes(data = mh_age_df, ymin=low_ci, ymax=high_ci), linetype=2, alpha=0.1)  +
+  facet_wrap(vars(subgroup)) +
+  scale_y_continuous(sec.axis = sec_axis(trans = ~.*001)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
+  labs(x = "Month", y = "% using therapy, psychiatric drugs", title = "Use of therapy or psychiatric drugs by age group")
+ggplotly(y)
 
 ## % Screened for Anxiety or Depression by age
-ggplot() + 
+x = ggplot() + 
   geom_line(data = anxdep_age_df, aes(x = time_period_start_date, y = value, color = subgroup) ) +
   geom_line(data = cm_anxdep_df, aes(x = end_date, y = covid_19_deaths * 0.001) ) + 
   #geom_ribbon(aes(data = mh_age_df, ymin=low_ci, ymax=high_ci), linetype=2, alpha=0.1)  +
   facet_wrap(vars(subgroup)) +
-  scale_y_continuous(breaks = seq(0, 80, 10), sec.axis = sec_axis(trans = ~.*001)) +
+  scale_y_continuous(breaks = seq(0, 70, 20), sec.axis = sec_axis(trans = ~.*001)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
-  labs(x = "Month", y = "% Subgroup affected \n COVID mortality in tens of thousands", title = "% Positive screening for Anxiety or Depression by age")
+  labs(x = "Month", y = "% Subgroup affected", title = "% Positive screening for Anxiety or Depression by age")
+
+ggplotly(x)
+
 
 ```
 
@@ -212,3 +239,10 @@ anova_age_mh_access = aov(value ~factor(subgroup), data = mh_age_df)
 summary(anova_age_mh_access) 
 ```
 
+
+And again for positive screening for anxiety or depression by state:
+
+```{r}
+anova_state_ax = aov(value ~factor(subgroup), data = mh_state_df)
+summary(anova_state_ax) 
+```

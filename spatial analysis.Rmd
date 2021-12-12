@@ -1,6 +1,11 @@
 ---
-title: "spatial analysis"
-output: html_document
+title: "Spatial Analysis"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: spacelab
+    code_folding: hide
 ---
 
 ```{r setup, include=FALSE}
@@ -27,9 +32,10 @@ library(ggmap)
 library(hablar)
 
 ```
+We can see that states with the highest population like NY, CA, have higher incidence, with an outlier in Louisiana, with a shocking 40% positive screening.
 
 ```{r data}
-anxiety_df = read.csv("Indicators_of_Anxiety_or_Depression_Based_on_Reported_Frequency_of_Symptoms_During_Last_7_Days.csv") %>%  
+anxiety_df = read_csv("Indicators_of_Anxiety_or_Depression_Based_on_Reported_Frequency_of_Symptoms_During_Last_7_Days.csv") %>%  
   janitor::clean_names() %>% 
   select(indicator, group, subgroup, value) %>% 
   filter(indicator == "Symptoms of Anxiety Disorder or Depressive Disorder") %>% 
