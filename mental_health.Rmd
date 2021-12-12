@@ -53,6 +53,16 @@ cm_df = read_csv("Provisional_COVID-19_Death_Counts_by_Week_Ending_Date_and_Stat
   filter(state == "United States") %>%
   filter(group == "By Week")
 
+cm_anxdep_df = read_csv("Provisional_COVID-19_Death_Counts_by_Week_Ending_Date_and_State.csv") %>%  #Anxiety survey began earlier
+  janitor::clean_names() %>%
+  mutate(
+    start_date = as_date(start_date, format = '%m/%d/%Y'), 
+    end_date = as_date(end_date, format = '%m/%d/%Y'),
+   ) %>%
+   filter(end_date >=("2020-05-05") & end_date <= ("2021-10-11")) %>%
+  filter(state == "United States") %>%
+  filter(group == "By Week")
+
 z = cm_df %>% 
   ggplot(aes(x = end_date, y = covid_19_deaths)) + 
   geom_line()
@@ -76,16 +86,16 @@ mh_age = c("18 - 29 years", "30 - 39 years", "40 - 49 years", "50 - 59 years", "
 
 mh_age_df = mh_care_df %>% filter(subgroup %in% mh_age) %>% 
   #filter(indicator %in% "Took Prescription Medication for Mental Health And/Or Received Counseling or Therapy, Last 4 Weeks")
-  filter(indicator %in% "Took Prescription Medication for Mental Health, Last 4 Weeks")
-  #filter(indicator %in% "Needed Counseling or Therapy But Did Not Get It, Last 4 Weeks")
+  #filter(indicator %in% "Took Prescription Medication for Mental Health, Last 4 Weeks")
+  filter(indicator %in% "Needed Counseling or Therapy But Did Not Get It, Last 4 Weeks")
   #filter(indicator %in% "Received Counseling or Therapy, Last 4 Weeks")
 
 mh_state = c("By Race/Hispanic ethnicity", "United States", "By Disability status", "By Gender identity", "By Age", "By Sex", "By Education", "National Estimate", "By Presence of Symptoms of Anxiety/Depression")
 
 mh_state_df = mh_care_df %>% filter(group %notin% mh_state) %>% 
   #filter(indicator %in% "Took Prescription Medication for Mental Health And/Or Received Counseling or Therapy, Last 4 Weeks")
-  filter(indicator %in% "Took Prescription Medication for Mental Health, Last 4 Weeks")
-  #filter(indicator %in% "Needed Counseling or Therapy But Did Not Get It, Last 4 Weeks")
+  #filter(indicator %in% "Took Prescription Medication for Mental Health, Last 4 Weeks")
+  filter(indicator %in% "Needed Counseling or Therapy But Did Not Get It, Last 4 Weeks")
   #filter(indicator %in% "Received Counseling or Therapy, Last 4 Weeks")
 
 
@@ -111,7 +121,7 @@ anxdep_age_df = anxdep_df %>% filter(subgroup %in% mh_age) %>%
   filter(indicator %in% "Symptoms of Anxiety Disorder or Depressive Disorder")
   #filter(indicator %in% "Symptoms of Depressive Disorder")
   
-anxdep_state = c("By Race/Hispanic ethnicity", "United States", "By Disability status", "By Gender identity", "By Age", "By Sex", "By Education", "National Estimate", "By Presence of Symptoms of Anxiety/Depression")
+anxdep_state = c("By Race/Hispanic ethnicity", "United States", "By Disability status", "By Gender identity", "By Age", "By Sex", "By Education", "National Estimate", "By Presence of Symptoms of Anxiety/Depression", "By Sexual orientation")
 
 anxdep_state_df = anxdep_df %>% filter(group %notin% anxdep_state) %>% 
   #filter(indicator %in% "Symptoms of Anxiety Disorder")
@@ -119,32 +129,84 @@ anxdep_state_df = anxdep_df %>% filter(group %notin% anxdep_state) %>%
   #filter(indicator %in% "Symptoms of Depressive Disorder")
 ```
 
+
 ## Plotting Age vs ...
 ```{r}
 
-#Date vs subgroup
-p = mh_age_df %>%
+
+
+#Date vs subgroup w/ facet w/ CI
+mh_age_df %>%
   ggplot(aes(x = time_period_start_date, y = value, color = subgroup)) + 
   geom_line() + 
   geom_ribbon(aes(ymin=low_ci, ymax=high_ci), linetype=2, alpha=0.1)  + 
   facet_wrap(vars(mh_age_df$subgroup)) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(x = "Month", y = "% Subgroup affected")
 
-ggplotly(p)
-# 
-# + geom_label(x = "Month", y = "% of Subgroup affected, COVID")
-# + geom_label(x = "Month", y = "% of Subgroup affected, COVID mortality in tens of thosuands")
+#Date vs subgroup, no facets w/ CI
+mh_age_df %>%
+  ggplot(aes(x = time_period_start_date, y = value, color = subgroup)) + 
+  geom_line() + 
+  geom_ribbon(aes(ymin=low_ci, ymax=high_ci), linetype=2, alpha=0.1)  + 
+#  facet_wrap(vars(mh_age_df$subgroup)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(x = "Month", y = "% Subgroup affected", title = "Healthcare inaccessibility throughout the pandemic by age group ")
 
-#With COVID Deaths, unfaceted
-g = ggplot() + 
+# mental health availability w/ facet w/o CI w/COVID mort
+ggplot() + 
   geom_line(data = mh_age_df, aes(x = time_period_start_date, y = value, color = subgroup) ) +
   geom_line(data = cm_df, aes(x = end_date, y = covid_19_deaths * 0.001) ) + 
   #geom_ribbon(aes(data = mh_age_df, ymin=low_ci, ymax=high_ci), linetype=2, alpha=0.1)  +
   facet_wrap(vars(subgroup)) +
-  scale_y_continuous(sec.axis = sec_axis(trans = ~.*001)) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
-ggplotly(g)
+  scale_y_continuous(breaks = seq(0, 40, 5), sec.axis = sec_axis(trans = ~.*001)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
+  labs(x = "Month", y = "% without access to mental health treatment \n COVID mortality in tens of thousands",title = "Healthcare inaccessibility throughout the pandemic by age group ")
+#ggplotly(g)
+
+## % Screened for Anxiety or Depression by age
+ggplot() + 
+  geom_line(data = anxdep_age_df, aes(x = time_period_start_date, y = value, color = subgroup) ) +
+  geom_line(data = cm_anxdep_df, aes(x = end_date, y = covid_19_deaths * 0.001) ) + 
+  #geom_ribbon(aes(data = mh_age_df, ymin=low_ci, ymax=high_ci), linetype=2, alpha=0.1)  +
+  facet_wrap(vars(subgroup)) +
+  scale_y_continuous(breaks = seq(0, 80, 10), sec.axis = sec_axis(trans = ~.*001)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
+  labs(x = "Month", y = "% Subgroup affected \n COVID mortality in tens of thousands", title = "% Positive screening for Anxiety or Depression by age")
+
+```
 
 
+## Hypothesis Test
+
+We will explore whether there may be differences in the proportion of individuals unable to find mental healthcare.
+
+We use one-way ANOVA because we are comparing within a single categorical variable with more than two levels.
+
+$H_0$ : There is no difference in accessibility of mental healthcare by states
+
+$H_1$ : At least two states have unequal access for healthcare
+
+```{r}
+mh_care_df %>% 
+  select(subgroup, value)%>%
+  group_by(subgroup) %>% 
+  summarize(mean = mean(value),
+            se = sd(value)
+            ) %>% 
+  knitr::kable(caption = "Average % incidence of anxiety/depression by State during time period")
+
+```
+
+Based on the below we conclude with beyond 99.99% confidence that there is unequal access between states and the accessibility of mental healthcare. 
+```{r}
+anova_state_mh_access = aov(value ~factor(subgroup), data = mh_state_df)
+summary(anova_state_mh_access) 
+```
+
+We do a similar test to see if there are differences between age group and access to care, and reach a similar conclusion:
+```{r}
+anova_age_mh_access = aov(value ~factor(subgroup), data = mh_age_df)
+summary(anova_age_mh_access) 
 ```
 
