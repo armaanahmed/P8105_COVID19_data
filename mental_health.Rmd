@@ -33,14 +33,7 @@ scale_fill_discrete = scale_fill_viridis_d
 
 ## Mental Healthcare and the Pandemic
 
-Let's use plotly to illustrate the following:
-
-The proportion of Americans who were not able to get access to mental health care when they needed it, by age (4x4 facet by age)
-The proportion of Americans who used pharmaceuticals for their mental health, by age (4x4 facet by age)
-
-4x4 with CIs or one chart with no CI (adding CI might get messy)
-
-Maybe overlay a second set of axes (x2=x1, y2 = COVID count of deaths by end of week) to compare COVID deaths to the mental health status by age?
+Using plotly we illustrate the increase of mental health burden in the US by age group.
 
 We include a crude graph of COVID mortality from Oct 2020 to Oct 2021 to add context
 
@@ -163,9 +156,9 @@ anxdep_state_df = anxdep_df %>% filter(group %notin% anxdep_state) %>%
 
 ## Mental Health Burden by Age Group
 
-We notice that there are distinct patterns of 
-
 The following is presented alongside COVID mortalities scaled by tens of thousands to give context on the state of the pandemic at time of recording. 
+
+We notice that across age groups, there is a uniform increase in the use of mental health resources, particularly in the 18-29 cohort.
 
 ```{r}
 # mental health availability w/ facet w/o CI w/COVID mort
@@ -176,7 +169,7 @@ g = ggplot() +
   facet_wrap(vars(subgroup)) +
   scale_y_continuous(sec.axis = sec_axis(trans = ~.*001)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
-  labs(x = "Month", y = "% without access to mental health treatment",title = "Use of  ")
+  labs(x = "Month", y = "% without access to mental health treatment",title = "Proportion of those unable to find mental health care when needed")
 ggplotly(g)
 
 y = ggplot() + 
@@ -240,9 +233,9 @@ summary(anova_age_mh_access)
 ```
 
 
-And again for positive screening for anxiety or depression by state:
+And again, same results for for positive screening for anxiety or depression by state:
 
 ```{r}
-anova_state_ax = aov(value ~factor(subgroup), data = mh_state_df)
+anova_state_ax = aov(value ~factor(subgroup), data = anxdep_state_df)
 summary(anova_state_ax) 
 ```
