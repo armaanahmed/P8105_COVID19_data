@@ -133,7 +133,6 @@ From out exploratory analysis, we noticed that age was negatively correlated wit
 =======
 
 
->>>>>>> cf7b05af764877cee1ea90a44e06094083fa3b14
 ## What we can do:
 
 
