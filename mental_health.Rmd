@@ -156,20 +156,20 @@ ggplot() +
   geom_line(data = cm_df, aes(x = end_date, y = covid_19_deaths * 0.001) ) + 
   #geom_ribbon(aes(data = mh_age_df, ymin=low_ci, ymax=high_ci), linetype=2, alpha=0.1)  +
   facet_wrap(vars(subgroup)) +
-  scale_y_continuous(sec.axis = sec_axis(trans = ~.*001)) +
+  scale_y_continuous(breaks = seq(0, 40, 5), sec.axis = sec_axis(trans = ~.*001)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
-  labs(x = "Month", y = "% Subgroup affected \n COVID mortality in tens of thousands",title = "Healthcare inaccessibility throughout the pandemic by age group ")
+  labs(x = "Month", y = "% without access to mental health treatment \n COVID mortality in tens of thousands",title = "Healthcare inaccessibility throughout the pandemic by age group ")
 #ggplotly(g)
 
-
+## % Screened for Anxiety or Depression by age
 ggplot() + 
   geom_line(data = anxdep_age_df, aes(x = time_period_start_date, y = value, color = subgroup) ) +
   geom_line(data = cm_anxdep_df, aes(x = end_date, y = covid_19_deaths * 0.001) ) + 
   #geom_ribbon(aes(data = mh_age_df, ymin=low_ci, ymax=high_ci), linetype=2, alpha=0.1)  +
   facet_wrap(vars(subgroup)) +
-  scale_y_continuous(sec.axis = sec_axis(trans = ~.*001)) +
+  scale_y_continuous(breaks = seq(0, 80, 10), sec.axis = sec_axis(trans = ~.*001)) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
-  labs(x = "Month", y = "% Subgroup affected \n COVID mortality in tens of thousands")
+  labs(x = "Month", y = "% Subgroup affected \n COVID mortality in tens of thousands", title = "% Screened for Anxiety or Depression by age")
 
 ```
 
