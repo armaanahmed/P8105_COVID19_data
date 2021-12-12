@@ -7,7 +7,8 @@ title: "Anaylsis"
 ```{r setup}
 library(tidyverse)
 library(modelr)
-library(p8105.datasets)
+library(dplyr)
+library(lubridate)
 knitr::opts_chunk$set(
   fig.width = 6,
   fig.asp = .6,
@@ -22,7 +23,26 @@ scale_colour_discrete = scale_colour_viridis_d
 scale_fill_discrete = scale_fill_viridis_d
 ```
 
-```{r model}
-model_1 = lm(bwt ~ gaweeks + momage + babysex + mrace + parity, data = birthweight_df)
-model_1 %>% broom::tidy()
+```{r}
+anxiety_df = read.csv("Indicators_of_Anxiety_or_Depression_Based_on_Reported_Frequency_of_Symptoms_During_Last_7_Days.csv") %>%  
+  janitor::clean_names() %>% 
+  select(indicator, group, subgroup, value) %>% 
+  filter(indicator == "Symptoms of Anxiety Disorder or Depressive Disorder") %>% 
+  filter(group == "By Age") %>% 
+  group_by(subgroup) %>%
+  mutate(row = row_number()) %>% 
+  pivot_wider(
+    names_from = group,
+    values_from = value
+  ) %>% 
+  rename(value = 'By Age') %>% 
+  select(-row, -indicator)
+
+anxiety_df
+```
+
+We will build a crude model first with predictors: age, education, sex, and race. State is not included because that would give us 50 extra variables. 
+```{r plot}
+anxiety_df %>% 
+  ggplot(aes(x = subgroup, y = value)) + geom_point()
 ```
