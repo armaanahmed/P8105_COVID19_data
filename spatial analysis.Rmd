@@ -54,6 +54,6 @@ us_states %>%
   left_join(anxiety_df_sum, by=c("region"="state")) %>%
   ggplot(aes(x=long,y=lat,group=group, fill=x)) +
   geom_polygon(color = "gray90", size = 0.1) +
-  scale_fill_continuous(type = "viridis") + ggtitle("Symptoms of Anxiety Disorder or Depressive Disorder by State") + theme_map() 
+  scale_fill_continuous(type = "viridis") + ggtitle("Symptoms of Anxiety Disorder or Depressive Disorder by State") + theme_map() + theme(legend.title = element_blank())
 
 ```
