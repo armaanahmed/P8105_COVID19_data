@@ -1,12 +1,11 @@
 ---
-title: "Mental Health"
+title: "Access to Mental Health"
 output: 
   html_document:
     toc: true
     toc_float: true
     theme: spacelab
     code_folding: hide
-
 ---
 
 ```{r, include = FALSE}
@@ -92,7 +91,7 @@ mh_age_df = mh_care_df %>% filter(subgroup %in% mh_age) %>%
   filter(indicator %in% "Needed Counseling or Therapy But Did Not Get It, Last 4 Weeks")
   #filter(indicator %in% "Received Counseling or Therapy, Last 4 Weeks")
 
-mh_state = c("By Race/Hispanic ethnicity", "United States", "By Disability status", "By Gender identity", "By Age", "By Sex", "By Education", "National Estimate", "By Presence of Symptoms of Anxiety/Depression")
+mh_state = c("By Race/Hispanic ethnicity", "United States", "By Disability status", "By Gender identity", "By Age", "By Sex", "By Education", "National Estimate", "By Presence of Symptoms of Anxiety/Depression", "By Sexual orientation")
 
 mh_state_df = mh_care_df %>% filter(group %notin% mh_state) %>% 
   #filter(indicator %in% "Took Prescription Medication for Mental Health And/Or Received Counseling or Therapy, Last 4 Weeks")
@@ -190,13 +189,14 @@ $H_0$ : There is no difference in accessibility of mental healthcare by states
 $H_1$ : At least two states have unequal access for healthcare
 
 ```{r}
-mh_care_df %>% 
+state_means = mh_state_df %>% 
   select(subgroup, value)%>%
   group_by(subgroup) %>% 
+  na.omit() %>%
   summarize(mean = mean(value),
             se = sd(value)
-            ) %>% 
-  knitr::kable(caption = "Average % incidence of anxiety/depression by State during time period")
+            )
+  knitr::kable(head(state_means,caption = "Average % incidence of anxiety/depression by State during time period"))
 
 ```
 

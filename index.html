@@ -33,6 +33,7 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
@@ -220,6 +221,9 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 
 
 
@@ -359,6 +363,14 @@ div.tocify {
 
 <div id="header">
 
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
 
 
 <h1 class="title toc-ignore">Mental Health and COVID-19</h1>
@@ -371,21 +383,20 @@ div.tocify {
 <h2>Motivation</h2>
 <p>The COVID-19 pandemic has left an unprecedented impact on mental health, with especially staggering effects on the youth, elderly, and vulnerable populations, the magnitude of which was captured by multiple institutions in the United States including <a href = "https://www.publichealth.columbia.edu/public-health-now/news/covid-19-pandemic-impacts-mental-health-worldwide /">Columbia Mailman </a> and the federal government. It has reached a point that earlier this week, U.S. Surgeon General Vivek Murthy published a 53-page advisory reviewing circumstances behind a decade long increase and outlining direct actions institutions including state and federal governments can take to combat it.</p>
 <p>There are many possible contributing factors to the increase in mental health disorders connected to the pandemic, including emotional hardship from deaths, a worsening opioid crisis, income volatility, and contracting the disease itself, along with lifestyle changes that came with the national effort against the disease, like an increase of weight <a href = "https://www.health.harvard.edu/blog/did-we-really-gain-weight-during-the-pandemic-202110052606#:~:text=As%20it%20turns%20out%2C%2039,2%25%20gaining%20over%2027.5%20pounds.">possibly induced by stress <a>.</p>
-<p>Another lifestyle change were lockdowns, which early in the pandemic, were enacted to encourage Americans to stay home and slow the spread of COVID-19. Complications of the lockdown included mass unemployment, widespread shutdown of small businesses, including an <a href="https://www.nytimes.com/2020/08/03/nyregion/nyc-small-businesses-closing-coronavirus.html">estimated one third of small businesses in NYC</a>, a <a href="https://www.bloomberg.com/news/articles/2020-06-08/black-business-owners-suffer-41-drop-in-covid-19-lockdowns">decline of 41% of black business owners</a> (If paywalled, <a href="https://drive.google.com/file/d/1so5hfe7FaEf6Newl-XENT8gfIQWiQKb9/view?usp=sharing">read here</a>), and increased incidence of mental health issues <a
-href="https://icap.columbia.edu/tools_resources/silver-survey-summary-sheet/">in the elderly</a>.</p>
+<p>Another lifestyle change were lockdowns, which early in the pandemic, were enacted to encourage Americans to stay home and slow the spread of COVID-19. Complications of the lockdown included mass unemployment, widespread shutdown of small businesses, including an <a href="https://www.nytimes.com/2020/08/03/nyregion/nyc-small-businesses-closing-coronavirus.html">estimated one third of small businesses in NYC</a>, a <a href="https://www.bloomberg.com/news/articles/2020-06-08/black-business-owners-suffer-41-drop-in-covid-19-lockdowns">decline of 41% of black business owners</a> (If paywalled, <a href="https://drive.google.com/file/d/1so5hfe7FaEf6Newl-XENT8gfIQWiQKb9/view?usp=sharing">read here</a>), and increased incidence of mental health issues <a href="https://icap.columbia.edu/tools_resources/silver-survey-summary-sheet/">in the elderly</a>.</p>
 <p>In addition, there is shortage of mental health professionals equipped to handle the increased incidence of cases.</p>
 <p>Innovations to increase access to care, whether from government or industry are needed and we will examine why.</p>
 </div>
 <div id="related-work" class="section level2">
 <h2>Related Work</h2>
-<p>We were inspired by</p>
+<p>Since the beginning of the pandemic, we have been inspired by</p>
+<p><a href="https://www.hhs.gov/sites/default/files/surgeon-general-youth-mental-health-advisory.pdf" class="uri">https://www.hhs.gov/sites/default/files/surgeon-general-youth-mental-health-advisory.pdf</a></p>
 <p><a href="https://www.hhs.gov/sites/default/files/surgeon-general-youth-mental-health-advisory.pdf" class="uri">https://www.hhs.gov/sites/default/files/surgeon-general-youth-mental-health-advisory.pdf</a></p>
 <p>Where possible, we compare the results with 2019 values from the National Health Interview Survey (NHIS) as a baseline. <a href="https://www.cdc.gov/nchs/data/nhis/mental-health-monthly-508.pdf/"> “Estimates of Mental Health Symptomatology” </a></p>
 </div>
 <div id="initial-questions" class="section level2">
 <h2>Initial questions</h2>
 <p>Initially we were curious whether there was any the pandemic and circumstances around it could have had impact on the incidence of anxiety, depression, or other emotional disorders. After finding the Pulse Survey, we also wondered how mental health changed</p>
-<p>What age groups</p>
 <p>• What age groups have had the highest increase in anxiety or depression? (Which groups were most affected?) Repeat for race/etc</p>
 <p>• So on…</p>
 </div>
@@ -398,11 +409,7 @@ href="https://icap.columbia.edu/tools_resources/silver-survey-summary-sheet/">in
 </div>
 <div id="anxiety-and-depression---nchs---household-pulse-survey" class="section level2">
 <h2>Anxiety and Depression - NCHS - Household Pulse Survey</h2>
-<a href = "https://data.cdc.gov/NCHS/Indicators-of-Anxiety-or-Depression-Based-on-Repor/8pt5-q6wp">
-<h6>
-Available here
-</h6>
-<p></a></p>
+<p><a href = "https://data.cdc.gov/NCHS/Indicators-of-Anxiety-or-Depression-Based-on-Repor/8pt5-q6wp"></p>
 <p>The “Value” column represents the percentage of members of the subgroup column that, at the time of measurement, screened positive for symptoms of a depressive or anxious disorder, or both.</p>
 <p>The value score is derived from a modified combination of two screening tests, the two-item <a href = "https://www.hiv.uw.edu/page/mental-health-screening/phq-2/"> </a> Patient Health Questionnaire (PHQ-2) and the two-item <a href = "https://www.hiv.uw.edu/page/mental-health-screening/gad-2 /"> Generalized Anxiety Disorder (GAD-2)</a> scale.</p>
 <pre class="r"><code>anxiety_depression_df = read_csv(&quot;Indicators_of_Anxiety_or_Depression_Based_on_Reported_Frequency_of_Symptoms_During_Last_7_Days.csv&quot;) %&gt;% 
@@ -416,22 +423,24 @@ Available here
 <pre><code>## 
 ## i Use `spec()` to retrieve the full column specification for this data.
 ## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<pre class="r"><code>head_ad = anxiety_depression_df %&gt;% 
-  select(indicator, state, subgroup, time_period_end_date,value)
+<pre class="r"><code>head_ad = anxiety_depression_df %&gt;% select(indicator, state, subgroup, time_period_label,value)
 
 head(head_ad)</code></pre>
 <pre><code>## # A tibble: 6 x 5
-##   indicator                       state      subgroup   time_period_end_d~ value
+##   indicator                       state      subgroup   time_period_label  value
 ##   &lt;chr&gt;                           &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;              &lt;dbl&gt;
-## 1 Symptoms of Depressive Disorder Alabama    Alabama    5/5/2020            18.6
-## 2 Symptoms of Depressive Disorder Alaska     Alaska     5/5/2020            19.2
-## 3 Symptoms of Depressive Disorder Arizona    Arizona    5/5/2020            22.4
-## 4 Symptoms of Depressive Disorder Arkansas   Arkansas   5/5/2020            26.6
-## 5 Symptoms of Depressive Disorder California California 5/5/2020            25.4
-## 6 Symptoms of Depressive Disorder Colorado   Colorado   5/5/2020            22</code></pre>
+## 1 Symptoms of Depressive Disorder Alabama    Alabama    Apr 23 - May 5, 2~  18.6
+## 2 Symptoms of Depressive Disorder Alaska     Alaska     Apr 23 - May 5, 2~  19.2
+## 3 Symptoms of Depressive Disorder Arizona    Arizona    Apr 23 - May 5, 2~  22.4
+## 4 Symptoms of Depressive Disorder Arkansas   Arkansas   Apr 23 - May 5, 2~  26.6
+## 5 Symptoms of Depressive Disorder California California Apr 23 - May 5, 2~  25.4
+## 6 Symptoms of Depressive Disorder Colorado   Colorado   Apr 23 - May 5, 2~  22</code></pre>
 </div>
 <div id="mental-health-care---nchs---household-pulse-survey" class="section level2">
 <h2>Mental Health Care - NCHS - Household Pulse Survey</h2>
+<h2>
+Mental Health Care - NCHS - Household Pulse Survey
+</h2>
 <a href = "https://data.cdc.gov/NCHS/Mental-Health-Care-in-the-Last-4-Weeks/yni7-er2q">
 <h6>
 Available here
@@ -454,18 +463,25 @@ Available here
 ## i Use `spec()` to retrieve the full column specification for this data.
 ## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <pre class="r"><code>head_mh = mh_care_df %&gt;% 
-  select(indicator, state, subgroup, time_period_end_date,value)
+  select(indicator, state, subgroup, time_period_label,value)
 
 head(head_mh)</code></pre>
 <pre><code>## # A tibble: 6 x 5
-##   indicator                         state     subgroup   time_period_end_~ value
-##   &lt;chr&gt;                             &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;             &lt;dbl&gt;
-## 1 Took Prescription Medication for~ United S~ United St~ 08/31/2020         19.4
-## 2 Took Prescription Medication for~ United S~ 18 - 29 y~ 08/31/2020         18.7
-## 3 Took Prescription Medication for~ United S~ 30 - 39 y~ 08/31/2020         18.3
-## 4 Took Prescription Medication for~ United S~ 40 - 49 y~ 08/31/2020         20.4
-## 5 Took Prescription Medication for~ United S~ 50 - 59 y~ 08/31/2020         21.2
-## 6 Took Prescription Medication for~ United S~ 60 - 69 y~ 08/31/2020         19.7</code></pre>
+##   indicator                        state     subgroup   time_period_label  value
+##   &lt;chr&gt;                            &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;              &lt;dbl&gt;
+## 1 Took Prescription Medication fo~ United S~ United St~ Aug 19 - Aug 31, ~  19.4
+## 2 Took Prescription Medication fo~ United S~ 18 - 29 y~ Aug 19 - Aug 31, ~  18.7
+## 3 Took Prescription Medication fo~ United S~ 30 - 39 y~ Aug 19 - Aug 31, ~  18.3
+## 4 Took Prescription Medication fo~ United S~ 40 - 49 y~ Aug 19 - Aug 31, ~  20.4
+## 5 Took Prescription Medication fo~ United S~ 50 - 59 y~ Aug 19 - Aug 31, ~  21.2
+## 6 Took Prescription Medication fo~ United S~ 60 - 69 y~ Aug 19 - Aug 31, ~  19.7</code></pre>
+</div>
+<div id="exploratory-analysis" class="section level2">
+<h2>Exploratory Analysis</h2>
+<div class="figure">
+<img src="2019%20baseline.png" alt="" />
+<p class="caption">2019 Baseline</p>
+</div>
 </div>
 <div id="discussion" class="section level2">
 <h2>Discussion:</h2>
@@ -479,8 +495,7 @@ head(head_mh)</code></pre>
 <p>Since 2020, <a href="https://www.forbes.com/sites/katiejennings/2021/06/07/venture-funding-for-mental-health-startups-hits-record-high-as-anxiety-depression-skyrocket/?sh=4c4ea68a1116">record numbers of mental health startups have received venture capital funding</a>.</p>
 <p>A few examples:</p>
 <p>• Online mental health/wellness service <a href="https://www.fiercehealthcare.com/tech/softbank-leads-mental-health-startup-cerebral-s-300m-round-propelling-valuation-to-4-8b.%20Published%20December%208,%202021.">Cerebral receiving $300M</a> from in a series C round led by SoftBank to expand services on its 200,000 patients</p>
-• <a href="https://www.fiercebiotech.com/medtech/digital-therapist-woebot-perks-up-90m-for-ai-powered-mental-health-platform.%20Published%20July%2021,%202021.%20Accessed%20December%2010,%202021.">Woebot closes $90M</a>: A free “AI/NLP powered chatbot” app that uses your personal input and generates individualized treatment using cognitive behavioral therapy inspired techniques.
-</p>
+<p>• <a href="https://www.fiercebiotech.com/medtech/digital-therapist-woebot-perks-up-90m-for-ai-powered-mental-health-platform.%20Published%20July%2021,%202021.%20Accessed%20December%2010,%202021.">Woebot closes $90M</a>: A free “AI/NLP powered chatbot” app that uses your personal input and generates individualized treatment using cognitive behavioral therapy inspired techniques.</p>
 <p>• <a href="https://www.whatif.vc/portfolio">And more</a></p>
 </div>
 
@@ -519,6 +534,11 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
 
 <script>
 $(document).ready(function ()  {
