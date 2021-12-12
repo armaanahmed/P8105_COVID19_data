@@ -353,8 +353,14 @@ anxiety_df</code></pre>
 ## # … with 291 more rows</code></pre>
 <p>We will build a crude model first with predictors: age, education, sex, and race. State is not included because that would give us 50 extra variables.</p>
 <pre class="r"><code>anxiety_df %&gt;% 
-  ggplot(aes(x = subgroup, y = value)) + geom_point()</code></pre>
-<pre><code>## Warning: Removed 28 rows containing missing values (geom_point).</code></pre>
+  ggplot(aes(x = subgroup, y = value)) + 
+  geom_boxplot() + 
+  labs(
+    title = &quot;Symptoms of Anxiety or Depressive Disorder by Age Group&quot;,
+    x = &quot;Age group&quot;,
+    y = &quot;Frequency of anxiety or depressive symptoms&quot;
+  )</code></pre>
+<pre><code>## Warning: Removed 28 rows containing non-finite values (stat_boxplot).</code></pre>
 <p><img src="analysis_2_files/figure-html/plot-1.png" width="90%" /></p>
 </div>
 

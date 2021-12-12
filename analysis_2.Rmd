@@ -41,8 +41,14 @@ anxiety_df = read.csv("Indicators_of_Anxiety_or_Depression_Based_on_Reported_Fre
 anxiety_df
 ```
 
-We will build a crude model first with predictors: age, education, sex, and race. State is not included because that would give us 50 extra variables. 
+
 ```{r plot}
 anxiety_df %>% 
-  ggplot(aes(x = subgroup, y = value)) + geom_point()
+  ggplot(aes(x = subgroup, y = value)) + 
+  geom_boxplot() + 
+  labs(
+    title = "Symptoms of Anxiety or Depressive Disorder by Age Group",
+    x = "Age group",
+    y = "Frequency of anxiety or depressive symptoms"
+  )
 ```
