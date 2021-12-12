@@ -88,7 +88,7 @@ The “Value” column represents the percentage of members of the subgroup colu
 
 The value score is derived from a modified combination of two screening tests, the two-item <a href = "https://www.hiv.uw.edu/page/mental-health-screening/phq-2/"> </a> Patient Health Questionnaire (PHQ-2) and the two-item <a href = "https://www.hiv.uw.edu/page/mental-health-screening/gad-2 /"> Generalized Anxiety Disorder (GAD-2)</a>  scale. 
 
-```{r}
+```{r echo=FALSE}
 anxiety_depression_df = read_csv("Indicators_of_Anxiety_or_Depression_Based_on_Reported_Frequency_of_Symptoms_During_Last_7_Days.csv") %>% 
   janitor::clean_names() %>% 
    na.omit
@@ -110,7 +110,7 @@ b) received counseling or therapy from a mental health professional
 c) needed counseling or therapy from a mental health professional but did not get it (unmet mental health need)
 
 
-```{r}
+```{r echo=FALSE}
 mh_care_df = read_csv("Mental_Health_Care_in_the_Last_4_Weeks.csv") %>%  
   janitor::clean_names() 
 
@@ -130,8 +130,7 @@ Mental health data from 2019 provides a baseline to compare changes in anxiety a
 ![2019 Baseline](2019 baseline.png)
 
 ## Discussion:
- 
-
+From out exploratory analysis, we noticed that age was negatively correlated with frequency of anxiety or depression symptoms. The 18-29 year old age group had the highest frequency of mental health symptoms. Furthermore, women were more likely to experience anxiety and depression symptoms compared to men. Education level was also correlated with mental health symptoms, with bachelor's degree or higher having the lowest frequency of symptoms. From the spatial data overlaid onto the map of the United States, we noticed that generally, the southern states and west coast had higher frequency of mental health symptoms. Furthermore, looking at temporal data, we can see that spikes in covid-19 related deaths corresponded with proportion of those unable to find mental health care treatment, use of therapy or psychiatric drugs, and positive screening for anxiety. s
 ## What we can do:
 
 
