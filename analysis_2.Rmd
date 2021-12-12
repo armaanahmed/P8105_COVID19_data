@@ -1,13 +1,18 @@
 ---
-title: "Anaylsis"
+title: "Data exploration"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: spacelab
+    code_folding: hide
 ---
-
-### Regression analysis
 
 ```{r setup}
 library(tidyverse)
 library(modelr)
 library(dplyr)
+require(dplyr)
 library(lubridate)
 knitr::opts_chunk$set(
   fig.width = 6,
@@ -53,37 +58,89 @@ anxiety_df %>%
   )
 ```
 
-```{r echo = FALSE}
-compare_df = read.csv("Indicators_of_Anxiety_or_Depression_Based_on_Reported_Frequency_of_Symptoms_During_Last_7_Days.csv") %>%  
+```{r}
+race_df = read.csv("Indicators_of_Anxiety_or_Depression_Based_on_Reported_Frequency_of_Symptoms_During_Last_7_Days.csv") %>%  
   janitor::clean_names() %>% 
-  mutate(
-  time_period_end_date = as_date(time_period_end_date, format = '%m/%d/%Y')) %>% 
-  separate(time_period_end_date, c("Year", "Month", "Day"), sep = "-") %>% 
-  mutate(
-  Month = recode(Month,
-                       "01" = "January",
-                       "02" = "February",
-                       "03" = "March",
-                       "04" = "April",
-                       "05" = "May",
-                       "06" = "June",
-                       "07" = "July",
-                       "08" = "August",
-                       "09" = "September",
-                       "10" = "October"
-                 )
-  ) %>% 
-  filter(Year == "2021") %>% 
-  select(Month, indicator, value) %>% 
-  group_by(indicator) %>%
+  select(indicator, group, subgroup, value) %>% 
+  filter(indicator == "Symptoms of Anxiety Disorder or Depressive Disorder") %>% 
+  filter(group == "By Race/Hispanic ethnicity") %>% 
+  group_by(subgroup) %>%
   mutate(row = row_number()) %>% 
   pivot_wider(
-    names_from = indicator,
+    names_from = group,
     values_from = value
   ) %>% 
-  select(-row) %>% 
-  group_by(Month) %>% 
-  summarise(funs(mean))
+  rename(value = 'By Race/Hispanic ethnicity') %>% 
+  select(-row, -indicator)
 
-compare_df
+race_df
+```
+
+```{r plot2}
+race_df %>% 
+  ggplot(aes(x = subgroup, y = value)) + 
+  geom_boxplot() + 
+  labs(
+    title = "Symptoms of Anxiety or Depressive Disorder by Race/ethnicity",
+    x = "Race/ethnicity",
+    y = "Frequency of anxiety or depressive symptoms"
+  )
+```
+
+```{r}
+sex_df = read.csv("Indicators_of_Anxiety_or_Depression_Based_on_Reported_Frequency_of_Symptoms_During_Last_7_Days.csv") %>%  
+  janitor::clean_names() %>% 
+  select(indicator, group, subgroup, value) %>% 
+  filter(indicator == "Symptoms of Anxiety Disorder or Depressive Disorder") %>% 
+  filter(group == "By Sex") %>% 
+  group_by(subgroup) %>%
+  mutate(row = row_number()) %>% 
+  pivot_wider(
+    names_from = group,
+    values_from = value
+  ) %>% 
+  rename(value = 'By Sex') %>% 
+  select(-row, -indicator)
+
+sex_df
+```
+
+```{r plot3}
+sex_df %>% 
+  ggplot(aes(x = subgroup, y = value)) + 
+  geom_boxplot() + 
+  labs(
+    title = "Symptoms of Anxiety or Depressive Disorder by Sex",
+    x = "Sex",
+    y = "Frequency of anxiety or depressive symptoms"
+  )
+```
+
+```{r}
+education_df = read.csv("Indicators_of_Anxiety_or_Depression_Based_on_Reported_Frequency_of_Symptoms_During_Last_7_Days.csv") %>%  
+  janitor::clean_names() %>% 
+  select(indicator, group, subgroup, value) %>% 
+  filter(indicator == "Symptoms of Anxiety Disorder or Depressive Disorder") %>% 
+  filter(group == "By Education") %>% 
+  group_by(subgroup) %>%
+  mutate(row = row_number()) %>% 
+  pivot_wider(
+    names_from = group,
+    values_from = value
+  ) %>% 
+  rename(value = 'By Education') %>% 
+  select(-row, -indicator)
+
+education_df
+```
+
+```{r plot4}
+education_df %>% 
+  ggplot(aes(x = subgroup, y = value)) + 
+  geom_boxplot() + 
+  labs(
+    title = "Symptoms of Anxiety or Depressive Disorder by Education",
+    x = "Education level",
+    y = "Frequency of anxiety or depressive symptoms"
+  )
 ```

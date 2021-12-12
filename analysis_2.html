@@ -11,12 +11,12 @@
 
 
 
-<title>Anaylsis</title>
+<title>Data exploration</title>
 
 <script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -29,7 +29,11 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
@@ -217,7 +221,73 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
 
 
 
@@ -227,6 +297,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -250,16 +330,10 @@ $(document).ready(function () {
   <a href="about.html">About Us</a>
 </li>
 <li>
-  <a href="plotly.html">Analysis 1</a>
+  <a href="analysis_2.html">Data Exploration</a>
 </li>
 <li>
-  <a href="analysis_2.html">Analysis 2</a>
-</li>
-<li>
-  <a href="analysis_3.html">Analysis 3</a>
-</li>
-<li>
-  <a href="dashboard.html">Analysis 4</a>
+  <a href="dashboard.html">Dashboard</a>
 </li>
 <li>
   <a href="mental_health.html">Mental Healthcare and the Pandemic</a>
@@ -283,15 +357,21 @@ $(document).ready(function () {
 
 <div id="header">
 
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
 
 
-<h1 class="title toc-ignore">Anaylsis</h1>
+
+<h1 class="title toc-ignore">Data exploration</h1>
 
 </div>
 
 
-<div id="regression-analysis" class="section level3">
-<h3>Regression analysis</h3>
 <pre class="r"><code>library(tidyverse)</code></pre>
 <pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
 <pre><code>## ✓ ggplot2 3.3.5     ✓ purrr   0.3.4
@@ -303,6 +383,7 @@ $(document).ready(function () {
 ## x dplyr::lag()    masks stats::lag()</code></pre>
 <pre class="r"><code>library(modelr)
 library(dplyr)
+require(dplyr)
 library(lubridate)</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;lubridate&#39;</code></pre>
@@ -361,24 +442,131 @@ anxiety_df</code></pre>
   )</code></pre>
 <pre><code>## Warning: Removed 28 rows containing non-finite values (stat_boxplot).</code></pre>
 <p><img src="analysis_2_files/figure-html/plot-1.png" width="90%" /></p>
-<pre><code>## # A tibble: 2,868 × 6
-##    Year  Month Day   `Symptoms of Depre… `Symptoms of Anxi… `Symptoms of Anxiet…
-##    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;               &lt;dbl&gt;              &lt;dbl&gt;                &lt;dbl&gt;
-##  1 2020  05    05                   23.5               30.8                 35.9
-##  2 2020  05    05                   32.7               40.2                 46.8
-##  3 2020  05    05                   25.7               34.4                 39.6
-##  4 2020  05    05                   24.8               34.1                 38.9
-##  5 2020  05    05                   23.2               31                   35.8
-##  6 2020  05    05                   18.4               24.9                 28.9
-##  7 2020  05    05                   13.6               16.4                 21.5
-##  8 2020  05    05                   14.4               14.6                 21.1
-##  9 2020  05    05                   20.8               26.1                 31  
-## 10 2020  05    05                   26.1               35.4                 40.7
-## # … with 2,858 more rows</code></pre>
+<pre class="r"><code>race_df = read.csv(&quot;Indicators_of_Anxiety_or_Depression_Based_on_Reported_Frequency_of_Symptoms_During_Last_7_Days.csv&quot;) %&gt;%  
+  janitor::clean_names() %&gt;% 
+  select(indicator, group, subgroup, value) %&gt;% 
+  filter(indicator == &quot;Symptoms of Anxiety Disorder or Depressive Disorder&quot;) %&gt;% 
+  filter(group == &quot;By Race/Hispanic ethnicity&quot;) %&gt;% 
+  group_by(subgroup) %&gt;%
+  mutate(row = row_number()) %&gt;% 
+  pivot_wider(
+    names_from = group,
+    values_from = value
+  ) %&gt;% 
+  rename(value = &#39;By Race/Hispanic ethnicity&#39;) %&gt;% 
+  select(-row, -indicator)
+
+race_df</code></pre>
+<pre><code>## # A tibble: 215 × 2
+## # Groups:   subgroup [5]
+##    subgroup                                     value
+##    &lt;chr&gt;                                        &lt;dbl&gt;
+##  1 Hispanic or Latino                            42.7
+##  2 Non-Hispanic White, single race               33.6
+##  3 Non-Hispanic Black, single race               38.9
+##  4 Non-Hispanic Asian, single race               31.9
+##  5 Non-Hispanic, other races and multiple races  43.9
+##  6 Hispanic or Latino                            40.3
+##  7 Non-Hispanic White, single race               32  
+##  8 Non-Hispanic Black, single race               38.8
+##  9 Non-Hispanic Asian, single race               29.9
+## 10 Non-Hispanic, other races and multiple races  45.9
+## # … with 205 more rows</code></pre>
+<pre class="r"><code>race_df %&gt;% 
+  ggplot(aes(x = subgroup, y = value)) + 
+  geom_boxplot() + 
+  labs(
+    title = &quot;Symptoms of Anxiety or Depressive Disorder by Race/ethnicity&quot;,
+    x = &quot;Race/ethnicity&quot;,
+    y = &quot;Frequency of anxiety or depressive symptoms&quot;
+  )</code></pre>
+<pre><code>## Warning: Removed 20 rows containing non-finite values (stat_boxplot).</code></pre>
+<p><img src="analysis_2_files/figure-html/plot2-1.png" width="90%" /></p>
+<pre class="r"><code>sex_df = read.csv(&quot;Indicators_of_Anxiety_or_Depression_Based_on_Reported_Frequency_of_Symptoms_During_Last_7_Days.csv&quot;) %&gt;%  
+  janitor::clean_names() %&gt;% 
+  select(indicator, group, subgroup, value) %&gt;% 
+  filter(indicator == &quot;Symptoms of Anxiety Disorder or Depressive Disorder&quot;) %&gt;% 
+  filter(group == &quot;By Sex&quot;) %&gt;% 
+  group_by(subgroup) %&gt;%
+  mutate(row = row_number()) %&gt;% 
+  pivot_wider(
+    names_from = group,
+    values_from = value
+  ) %&gt;% 
+  rename(value = &#39;By Sex&#39;) %&gt;% 
+  select(-row, -indicator)
+
+sex_df</code></pre>
+<pre><code>## # A tibble: 86 × 2
+## # Groups:   subgroup [2]
+##    subgroup value
+##    &lt;chr&gt;    &lt;dbl&gt;
+##  1 Male      31  
+##  2 Female    40.7
+##  3 Male      31.4
+##  4 Female    37.2
+##  5 Male      29.9
+##  6 Female    37.6
+##  7 Male      30.3
+##  8 Female    38.1
+##  9 Male      31.1
+## 10 Female    39.6
+## # … with 76 more rows</code></pre>
+<pre class="r"><code>sex_df %&gt;% 
+  ggplot(aes(x = subgroup, y = value)) + 
+  geom_boxplot() + 
+  labs(
+    title = &quot;Symptoms of Anxiety or Depressive Disorder by Sex&quot;,
+    x = &quot;Sex&quot;,
+    y = &quot;Frequency of anxiety or depressive symptoms&quot;
+  )</code></pre>
+<pre><code>## Warning: Removed 8 rows containing non-finite values (stat_boxplot).</code></pre>
+<p><img src="analysis_2_files/figure-html/plot3-1.png" width="90%" /></p>
+<pre class="r"><code>education_df = read.csv(&quot;Indicators_of_Anxiety_or_Depression_Based_on_Reported_Frequency_of_Symptoms_During_Last_7_Days.csv&quot;) %&gt;%  
+  janitor::clean_names() %&gt;% 
+  select(indicator, group, subgroup, value) %&gt;% 
+  filter(indicator == &quot;Symptoms of Anxiety Disorder or Depressive Disorder&quot;) %&gt;% 
+  filter(group == &quot;By Education&quot;) %&gt;% 
+  group_by(subgroup) %&gt;%
+  mutate(row = row_number()) %&gt;% 
+  pivot_wider(
+    names_from = group,
+    values_from = value
+  ) %&gt;% 
+  rename(value = &#39;By Education&#39;) %&gt;% 
+  select(-row, -indicator)
+
+education_df</code></pre>
+<pre><code>## # A tibble: 172 × 2
+## # Groups:   subgroup [4]
+##    subgroup                        value
+##    &lt;chr&gt;                           &lt;dbl&gt;
+##  1 Less than a high school diploma  45.4
+##  2 High school diploma or GED       36.7
+##  3 Some college/Associate&#39;s degree  38.5
+##  4 Bachelor&#39;s degree or higher      30.7
+##  5 Less than a high school diploma  42.5
+##  6 High school diploma or GED       37.8
+##  7 Some college/Associate&#39;s degree  36.2
+##  8 Bachelor&#39;s degree or higher      27.5
+##  9 Less than a high school diploma  40.9
+## 10 High school diploma or GED       37.6
+## # … with 162 more rows</code></pre>
+<pre class="r"><code>education_df %&gt;% 
+  ggplot(aes(x = subgroup, y = value)) + 
+  geom_boxplot() + 
+  labs(
+    title = &quot;Symptoms of Anxiety or Depressive Disorder by Education&quot;,
+    x = &quot;Education level&quot;,
+    y = &quot;Frequency of anxiety or depressive symptoms&quot;
+  )</code></pre>
+<pre><code>## Warning: Removed 16 rows containing non-finite values (stat_boxplot).</code></pre>
+<p><img src="analysis_2_files/figure-html/plot4-1.png" width="90%" /></p>
+
+
+
 </div>
-
-
-
+</div>
 
 </div>
 
@@ -410,7 +598,41 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
