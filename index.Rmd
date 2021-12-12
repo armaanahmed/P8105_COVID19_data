@@ -33,9 +33,6 @@ https://armaanahmed.github.io/
 
 ## Motivation
 
-“It would be a tragedy if we beat back one public health crisis only to allow another to grow in its place.”
-
-
 The COVID-19 pandemic has left an unprecedented impact on mental health, with especially staggering effects on the youth, elderly, and vulnerable populations, the magnitude of which was captured by multiple institutions in the United States including <a href "https://www.publichealth.columbia.edu/public-health-now/news/covid-19-pandemic-impacts-mental-health-worldwide /">Columbia Mailman </a> and the federal government. It has reached a point that earlier this week, U.S. Surgeon General Vivek Murthy published a 53-page advisory reviewing circumstances behind a decade long increase and outlining direct actions institutions including state and federal governments can take to combat it. 
 
 There are many possible contributing factors to the increase in mental health disorders connected to the pandemic, including emotional hardship from deaths, a worsening opioid crisis, income volatility, and contracting the disease itself, along with lifestyle changes that came with the national effort against the disease. 
