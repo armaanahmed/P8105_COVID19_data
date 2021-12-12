@@ -25,37 +25,38 @@ scale_colour_discrete = scale_colour_viridis_d
 scale_fill_discrete = scale_fill_viridis_d
 ```
 
-By: Armaan Ahmed, Brandon Rojas, Hansheng Zheng, Yueli Ma 
-
-https://albinomeese.github.io/hz2711.github.io/
-https://brojasnyc.github.io/br2598.github.io/
-https://armaanahmed.github.io/
+By: <a href = "https://armaanahmed.github.io/">Armaan Ahmed </a> , <a href = "https://brojasnyc.github.io/br2598.github.io/">Brandon Rojas </a> , <a href = "https://albinomeese.github.io/hz2711.github.io/ ">Hansheng Zheng </a> , Yueli Ma 
 
 ## Motivation
 
-The COVID-19 pandemic has left an unprecedented impact on mental health, with especially staggering effects on the youth, elderly, and vulnerable populations, the magnitude of which was captured by multiple institutions in the United States including <a href "https://www.publichealth.columbia.edu/public-health-now/news/covid-19-pandemic-impacts-mental-health-worldwide /">Columbia Mailman </a> and the federal government. It has reached a point that earlier this week, U.S. Surgeon General Vivek Murthy published a 53-page advisory reviewing circumstances behind a decade long increase and outlining direct actions institutions including state and federal governments can take to combat it. 
+The COVID-19 pandemic has left an unprecedented impact on mental health, with especially staggering effects on the youth, elderly, and vulnerable populations, the magnitude of which was captured by multiple institutions in the United States including <a href = "https://www.publichealth.columbia.edu/public-health-now/news/covid-19-pandemic-impacts-mental-health-worldwide /">Columbia Mailman </a> and the federal government. It has reached a point that earlier this week, U.S. Surgeon General Vivek Murthy published a 53-page advisory reviewing circumstances behind a decade long increase and outlining direct actions institutions including state and federal governments can take to combat it. 
 
-There are many possible contributing factors to the increase in mental health disorders connected to the pandemic, including emotional hardship from deaths, a worsening opioid crisis, income volatility, and contracting the disease itself, along with lifestyle changes that came with the national effort against the disease. 
+There are many possible contributing factors to the increase in mental health disorders connected to the pandemic, including emotional hardship from deaths, a worsening opioid crisis, income volatility, and contracting the disease itself, along with lifestyle changes that came with the national effort against the disease, like an increase of weight <a href = "https://www.health.harvard.edu/blog/did-we-really-gain-weight-during-the-pandemic-202110052606#:~:text=As%20it%20turns%20out%2C%2039,2%25%20gaining%20over%2027.5%20pounds.">possibly induced by stress <a>.
 
-Early in the pandemic, lockdowns were enacted to encourage Americans to stay home and slow the spread of COVID-19. Complications of the lockdown included mass unemployment, widespread shutdown of small businesses, including an <a href="https://www.nytimes.com/2020/08/03/nyregion/nyc-small-businesses-closing-coronavirus.html">estimated one third of small businesses in NYC</a>, a <a href="https://www.bloomberg.com/news/articles/2020-06-08/black-business-owners-suffer-41-drop-in-covid-19-lockdowns">decline of 41% of black business owners</a> (If paywalled, <a href="https://drive.google.com/file/d/1so5hfe7FaEf6Newl-XENT8gfIQWiQKb9/view?usp=sharing">read here</a>), and increased incidence of mental health issues <a
+Another lifestyle change were lockdowns, which early in the pandemic, were enacted to encourage Americans to stay home and slow the spread of COVID-19. Complications of the lockdown included mass unemployment, widespread shutdown of small businesses, including an <a href="https://www.nytimes.com/2020/08/03/nyregion/nyc-small-businesses-closing-coronavirus.html">estimated one third of small businesses in NYC</a>, a <a href="https://www.bloomberg.com/news/articles/2020-06-08/black-business-owners-suffer-41-drop-in-covid-19-lockdowns">decline of 41% of black business owners</a> (If paywalled, <a href="https://drive.google.com/file/d/1so5hfe7FaEf6Newl-XENT8gfIQWiQKb9/view?usp=sharing">read here</a>), and increased incidence of mental health issues <a
 href="https://icap.columbia.edu/tools_resources/silver-survey-summary-sheet/">in the elderly</a>. 
 
 
 In addition, there is shortage of mental health professionals equipped to handle the increased incidence of cases. 
 
 
-Innovations, whether from government or industry are needed and we will examine why.
+Innovations to increase access to care, whether from government or industry are needed and we will examine why.
 
 
 ## Related Work
 
+We were inspired by
 
 https://www.hhs.gov/sites/default/files/surgeon-general-youth-mental-health-advisory.pdf 
 
-We compare the results with 2019 values from the National Health Interview Survey (NHIS) <a href="https://www.cdc.gov/nchs/data/nhis/mental-health-monthly-508.pdf/"> "Estimates of Mental Health Symptomatology" </a>
+Where possible, we compare the results with 2019 values from the National Health Interview Survey (NHIS) as a baseline. <a href="https://www.cdc.gov/nchs/data/nhis/mental-health-monthly-508.pdf/"> "Estimates of Mental Health Symptomatology" </a>
+
 
 ## Initial questions
 
+Initially we were curious whether there was any the pandemic and circumstances around it could have had impact on the incidence of anxiety, depression, or other emotional disorders. After finding the Pulse Survey, we also wondered how mental health changed 
+
+What age groups
 
 •	What age groups have had the highest increase in anxiety or depression? (Which groups were most affected?) Repeat for race/etc
 
@@ -66,40 +67,37 @@ We compare the results with 2019 values from the National Health Interview Surve
 
 In April 2020, one month after COVID-19 was declared a national emergency, the National Center for Health Statistics (NCHS) teamed up with the Census Bureau to create the Household Pulse Survey, a 20 minute survey intended to record the impact of the pandemic on mental health.
 
-For cleaning, the data required all dates be converted to Lubridate "Date" types from the original "Character", and columns converted to factors as necessary.
+For cleaning, the data required all dates be converted to Lubridate "Date" types from the original "Character", and columns converted to factors as necessary, and NAs removed.
 
 COVID mortality data was filtered by date and scaled as appropriate.
 
-We will examine the first two subsets of data focusing on incidence of anxiety and depression, and mental healthcare during the start of the pandemic.
+We will examine the first two subsets of the survey, which focus on incidence of anxiety and depression, and mental healthcare during 16 months of the pandemic.
 
-
-Anxiety and Depression - NCHS
-
-
-Where possible, we compare the results with 2019 values from the National Health Interview Survey (NHIS) as a baseline. <a href="https://www.cdc.gov/nchs/data/nhis/mental-health-monthly-508.pdf/"> "Estimates of Mental Health Symptomatology" </a>
-
-https://data.cdc.gov/NCHS/Indicators-of-Anxiety-or-Depression-Based-on-Repor/8pt5-q6wp
 
 
 
 ## Anxiety and Depression - NCHS - Household Pulse Survey
+<a href = "https://data.cdc.gov/NCHS/Indicators-of-Anxiety-or-Depression-Based-on-Repor/8pt5-q6wp"> <h6>Available here</h6></a>
 
-The "Value" column represents the percentage of members of the subgroup column that experienced either symptoms of a depressive or anxious disorder, or both.
+The "Value" column represents the percentage of members of the subgroup column that, at the time of measurement,  screened positive for symptoms of a depressive or anxious disorder, or both.
 
 The value score is derived from a modified combination of two screening tests, the two-item <a href = "https://www.hiv.uw.edu/page/mental-health-screening/phq-2/"> </a> Patient Health Questionnaire (PHQ-2) and the two-item <a href = "https://www.hiv.uw.edu/page/mental-health-screening/gad-2 /"> Generalized Anxiety Disorder (GAD-2)</a>  scale. 
 
 ```{r}
-anxiety_depression_df = read.csv("Indicators_of_Anxiety_or_Depression_Based_on_Reported_Frequency_of_Symptoms_During_Last_7_Days.csv") %>% 
+anxiety_depression_df = read_csv("Indicators_of_Anxiety_or_Depression_Based_on_Reported_Frequency_of_Symptoms_During_Last_7_Days.csv") %>% 
   janitor::clean_names() %>% 
    na.omit
 
-head_ad = anxiety_depression_df %>% select(i_indicator, state, subgroup, time_period_label,value) %>% knitr::kable() 
+head_ad = anxiety_depression_df %>% 
+  select(indicator, state, subgroup, time_period_end_date,value)
 
 head(head_ad)
 ```
 ## Mental Health Care - NCHS - Household Pulse Survey
 
-Four months into the survey, questions were added about the impact of the pandemic on mental healthcare. Estimates are derived from the same survey and the "value" column represents the percentage of members of the subgroup column who done one of the following:
+<a href = "https://data.cdc.gov/NCHS/Mental-Health-Care-in-the-Last-4-Weeks/yni7-er2q"> <h6>Available here</h6></a>
+
+Four months into the survey, questions were added about the impact of the pandemic on mental healthcare. Measurements ("Value" column) here refer to the percentage of members of the subgroup column who, within 4 weeks of taking the survey, underwent any of the following:
 
 a) took prescription medication for their mental health
 
@@ -109,12 +107,11 @@ c) needed counseling or therapy from a mental health professional but did not ge
 
 
 ```{r}
-mh_care_df = read.csv("Mental_Health_Care_in_the_Last_4_Weeks.csv") %>%  
+mh_care_df = read_csv("Mental_Health_Care_in_the_Last_4_Weeks.csv") %>%  
   janitor::clean_names() 
 
 head_mh = mh_care_df %>% 
-  select(i_indicator, state, subgroup, time_period_label,value) %>% 
-  knitr::kable() 
+  select(indicator, state, subgroup, time_period_end_date,value)
 
 head(head_mh)
 
