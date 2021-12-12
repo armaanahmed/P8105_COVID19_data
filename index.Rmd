@@ -36,11 +36,11 @@ https://armaanahmed.github.io/
 “It would be a tragedy if we beat back one public health crisis only to allow another to grow in its place.”
 
 
-The COVID-19 pandemic has left an unprecedented impact on mental health, with especially staggering effects on the youth, elderly, and vulnerable populations, the magnitude of which was captured by multiple institutions in the United States including the U.S. Census Bureau. It has reached a point that this week, U.S. Surgeon General Vivek Murthy published a 53-page advisory reviewing circumstances behind a decade long increase and outlining direct actions the institutions including state and federal government can take to combat it. 
+The COVID-19 pandemic has left an unprecedented impact on mental health, with especially staggering effects on the youth, elderly, and vulnerable populations, the magnitude of which was captured by multiple institutions in the United States including <a href "https://www.publichealth.columbia.edu/public-health-now/news/covid-19-pandemic-impacts-mental-health-worldwide /">Columbia Mailman </a> and the federal government. It has reached a point that earlier this week, U.S. Surgeon General Vivek Murthy published a 53-page advisory reviewing circumstances behind a decade long increase and outlining direct actions institutions including state and federal governments can take to combat it. 
 
-There are many possible contributing factors specifically connected to the pandemic, including a worsening opioid crisis, income volatility, and COVID-19 itself, along with lifestyle changes that came with the national effort against the disease. 
+There are many possible contributing factors to the increase in mental health disorders connected to the pandemic, including emotional hardship from deaths, a worsening opioid crisis, income volatility, and contracting the disease itself, along with lifestyle changes that came with the national effort against the disease. 
 
-Early in the pandemic, lockdowns were enacted to encourage Americans to stay home. Complications of the lockdown included mass unemployment, widespread shutdown of small businesses, including an <a href="https://www.nytimes.com/2020/08/03/nyregion/nyc-small-businesses-closing-coronavirus.html">estimated one third of small businesses in NYC</a>, a <a href="https://www.bloomberg.com/news/articles/2020-06-08/black-business-owners-suffer-41-drop-in-covid-19-lockdowns">decline of 41% of black business owners</a> (If paywalled, <a href="https://drive.google.com/file/d/1so5hfe7FaEf6Newl-XENT8gfIQWiQKb9/view?usp=sharing">read here</a>), and increased incidence of mental health issues <a
+Early in the pandemic, lockdowns were enacted to encourage Americans to stay home and slow the spread of COVID-19. Complications of the lockdown included mass unemployment, widespread shutdown of small businesses, including an <a href="https://www.nytimes.com/2020/08/03/nyregion/nyc-small-businesses-closing-coronavirus.html">estimated one third of small businesses in NYC</a>, a <a href="https://www.bloomberg.com/news/articles/2020-06-08/black-business-owners-suffer-41-drop-in-covid-19-lockdowns">decline of 41% of black business owners</a> (If paywalled, <a href="https://drive.google.com/file/d/1so5hfe7FaEf6Newl-XENT8gfIQWiQKb9/view?usp=sharing">read here</a>), and increased incidence of mental health issues <a
 href="https://icap.columbia.edu/tools_resources/silver-survey-summary-sheet/">in the elderly</a>. 
 
 
@@ -67,9 +67,11 @@ We compare the results with 2019 values from the National Health Interview Surve
 
 ## Data
 
-In April 2020, one month after COVID-19 was declared a national emergency, the National Center for Health Statistics (NCHS) teameddd up with the Census Bureau to create the Household Pulse Survey, a 20 minute survey intended to record the impact of the pandemic on mental health.
+In April 2020, one month after COVID-19 was declared a national emergency, the National Center for Health Statistics (NCHS) teamed up with the Census Bureau to create the Household Pulse Survey, a 20 minute survey intended to record the impact of the pandemic on mental health.
 
-For cleaning, the data required all dates be converted to Lubridate "Date" types from the original "Character".
+For cleaning, the data required all dates be converted to Lubridate "Date" types from the original "Character", and columns converted to factors as necessary.
+
+COVID mortality data was filtered by date and scaled as appropriate.
 
 We will examine the first two subsets of data focusing on incidence of anxiety and depression, and mental healthcare during the start of the pandemic.
 
