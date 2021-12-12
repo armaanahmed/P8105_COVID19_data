@@ -95,9 +95,6 @@ head_ad = anxiety_depression_df %>% select(indicator, state, subgroup, time_peri
 
 head(head_ad)
 ```
-## Mental Health Care - NCHS - Household Pulse Survey
-
-
 <h2>Mental Health Care - NCHS - Household Pulse Survey</h2>
 <a href = "https://data.cdc.gov/NCHS/Mental-Health-Care-in-the-Last-4-Weeks/yni7-er2q"><h6>Available here</h6></a>
 
