@@ -125,6 +125,9 @@ head(head_mh)
 
 ## Exploratory Analysis
 
+The exploratory analysis for mental health data was used to provide preliminary context for current country demographics and supplement our analysis of mental health throughout the country. 
+Mental health data from 2019 provides a baseline to compare changes in anxiety and depression levels following the outbreak of COVID-19. 
+
 
 ![2019 Baseline](2019 baseline.png)
 
