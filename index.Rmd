@@ -123,6 +123,10 @@ head(head_mh)
 
 ```
 
+## Exploratory Analysis
+
+
+![2019 Baseline](2019 baseline.png)
 
 ## Discussion:
  

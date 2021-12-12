@@ -1,4 +1,4 @@
-name: "Yay internet!"
+name: "Theme"
 output_dir: "."
 navbar:
   title: "Home"
@@ -21,4 +21,4 @@ navbar:
       href: http://github.com/brojasnyc/
 output:
   html_document:
-    theme: cerulean
+    theme: paper

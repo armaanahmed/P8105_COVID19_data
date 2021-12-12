@@ -2,8 +2,28 @@
 title: "About"
 ---
 
-### About this site
+### Armaan Ahmed 
 
-Sometimes you need to say a bit about the site -- how it was made, where it's hosted, where the source code can be found. 
+Columbia University
 
-If this is for a project or analysis, I recommend giving some details about the R package versions that you used to create the content.
+https://armaanahmed.github.io/
+
+### Brandon Rojas
+
+MS Biostatistics 2023
+
+https://brojasnyc.github.io/br2598.github.io/
+
+### Hansheng Zhang
+
+MPH Epidemiology 2022
+
+https://albinomeese.github.io/hz2711.github.io/
+
+### Yueli Ma 
+
+MPH Biostatistics 2022
+
+https://github.com/YueliMa 
+
+
